@@ -74,6 +74,8 @@ set(SRC_LIST
     src/Roll.cpp
     src/Roll.hpp
     src/StatePlayer.hpp
+    src/Parking.hpp
+    src/Parking.cpp
 )
 
 include_directories(src)
@@ -100,6 +102,7 @@ set(TEST_SRC_LIST
     test/CityTests.cpp
     test/YouGoToPrisonTests.cpp
     test/RollTests.cpp
+    test/ParkingTests.cpp
 )
 
 link_libraries(gmock)

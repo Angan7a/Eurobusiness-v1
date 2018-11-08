@@ -2,6 +2,7 @@
 #include "City.hpp"
 #include "Cards.hpp"
 #include "Railway.hpp"
+#include "Parking.hpp"
 #include "OrdinaryCard.hpp"
 #include <string>
 #include <fstream>
@@ -26,6 +27,8 @@ FieldPtr Board::factoryFields(const std::string & name)
         return std::make_shared<City>(name.substr(pos + 2), name.substr(0, pos - 1));
     else if (name.find("Koleje") != std::string::npos)
         return std::make_shared<Railway>(name);
+    else if (name.find("Parking") != std::string::npos)
+        return std::make_shared<Parking>(name);
     return std::make_shared<OrdinaryCard>(name);
 }
 
