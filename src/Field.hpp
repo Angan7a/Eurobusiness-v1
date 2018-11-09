@@ -19,4 +19,5 @@ public:
     
     virtual void doOn(PlayerPtr player) = 0;
     std::string getName() const;
+    virtual void draw(int x, int y) = 0;
 };

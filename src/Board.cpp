@@ -76,3 +76,9 @@ FieldPtr Board::ffactoryFields(const std::string & name)
         return std::make_shared<WaterSupplyNetwork>(name, 120);
     return factoryFields(name);
 }
+
+void Board::drawFields()
+{
+    for (auto field : fields_)
+        filed.draw();
+}

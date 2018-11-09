@@ -67,3 +67,8 @@ PlayerPtr Property::whoWantBuyThisProperty()
         if (player->doYouWantBuyThisProperty()) return player;
     }
 }
+
+void Property::draw(int x, int y)
+{
+
+}

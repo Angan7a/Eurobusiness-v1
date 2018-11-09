@@ -7,12 +7,13 @@
 #include "WaterSupplyNetwork.hpp"
 #include <memory>
 #include <json.hpp>
+//#include <QGraphicsScene>
 
 using FieldPtr = std::shared_ptr<Field>;
 using PropertyPtr = std::shared_ptr<Property>;   
 using json = nlohmann::json;
 
-class Board
+class Board //: public QGraphicsScene
 {
 private:
     std::vector<FieldPtr> fields_;
@@ -35,5 +36,6 @@ public:
     oneCard getRedCard();
     oneCard getBlueCard();
     FieldPtr ffactoryFields(const std::string & name);
+    void drawFields();
 };
 

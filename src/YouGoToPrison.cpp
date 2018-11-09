@@ -10,3 +10,7 @@ void YouGoToPrison::doOn(PlayerPtr player)
     player->setLocation(prisonField_);
 }
 
+void YouGoToPrison::draw(int x, int y)
+{
+
+}

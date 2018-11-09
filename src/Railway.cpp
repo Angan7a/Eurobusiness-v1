@@ -12,3 +12,7 @@ void Railway::doOn(PlayerPtr player)
 
 }
 
+void Railway::draw(int x, int y)
+{
+
+}

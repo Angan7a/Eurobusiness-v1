@@ -8,4 +8,5 @@ class Parking : public Field
 public:
     Parking(const std::string name);
     void doOn(PlayerPtr player) override;
+    void draw(int x, int y) override;
 };

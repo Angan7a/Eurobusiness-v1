@@ -8,4 +8,5 @@ public:
     Railway() = default;
     Railway(const std::string & name, int purchasePrice = 100);
     void doOn(PlayerPtr player) override;
+    void draw(int x, int y) override;
 };
