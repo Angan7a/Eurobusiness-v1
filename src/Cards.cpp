@@ -1,7 +1,7 @@
 #include "Cards.hpp"
 
-Cards::Cards(CardsColor color, json dataPacked) :
-    Field("Cards"),
+Cards::Cards(CardsColor color, const std::string & strColor, json dataPacked) :
+    Field(strColor),
     color_(color)
 {
     for (auto it = dataPacked.begin(); it != dataPacked.end(); it++)

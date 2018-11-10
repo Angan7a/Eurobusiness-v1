@@ -11,6 +11,8 @@
 
 int main(int argc, char *argv[])
 {
+
+    std::cout << "Eurobusiness!" << std::endl;
     QApplication a(argc, argv);
     Eurobusiness e(2);
     e.show();

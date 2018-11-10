@@ -3,6 +3,9 @@
 #include <string>
 #include <QGraphicsRectItem>
 #include <QGraphicsTextItem>
+#include <QFont>
+#include <QBrush>
+
 
 class Player;
 using PlayerPtr = std::shared_ptr<Player>;
@@ -28,12 +31,17 @@ public:
         QGraphicsRectItem * r = new QGraphicsRectItem();
         r->setRect(x, y, 100, 50);
         QGraphicsTextItem * t = new QGraphicsTextItem(r);
-        static int a=0;
-        a++;
-        t->setPlainText(QString("Score:")+QString::number(a)); // Score: 0
+        QGraphicsRectItem * rSmall = new QGraphicsRectItem(r);
+        rSmall->setRect(x,y,10,10);
+
+        QBrush brush;
+        brush.setStyle(Qt::SolidPattern);
+        brush.setColor(Qt::red);
+        rSmall->setBrush(brush);
+        t->setPlainText(QString::fromStdString(getName()));
         t->setDefaultTextColor(Qt::blue);
-        t->setPos(x,y);
-       // t->setFont(QFont("times",16));
+        t->setPos(x+12,y+15);
+        t->setFont(QFont("Times",8));
         return r;
     }
 };
