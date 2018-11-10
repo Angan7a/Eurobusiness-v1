@@ -11,6 +11,7 @@ Eurobusiness::Eurobusiness(int numberOfPlayers) : numberOfRounds(0)//, QWidget *
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     scene_ = board_->drawFields();
+    system("pwd");
     //scene_->setSceneRect(0,0,1024,768);
     //setScene(scene_);/home/a/Eurobusiness-v1/files
     setScene(scene_);

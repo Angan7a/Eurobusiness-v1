@@ -10,9 +10,9 @@
 Board::Board(const std::string & fileName) :
     fields_(40)
 {
-   // json j = readFile(fileName);
-   // setCards(j);
-   // setFieldToCards(j);
+    json j = readFile(fileName);
+    setCards(j);
+    setFieldToCards(j);
 }
 
 FieldPtr Board::getField(const unsigned int numberOfField) const noexcept
