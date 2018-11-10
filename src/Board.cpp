@@ -10,9 +10,9 @@
 Board::Board(const std::string & fileName) :
     fields_(40)
 {
-    json j = readFile(fileName);
-    setCards(j);
-    setFieldToCards(j);
+   // json j = readFile(fileName);
+   // setCards(j);
+   // setFieldToCards(j);
 }
 
 FieldPtr Board::getField(const unsigned int numberOfField) const noexcept
@@ -77,8 +77,33 @@ FieldPtr Board::ffactoryFields(const std::string & name)
     return factoryFields(name);
 }
 
-void Board::drawFields()
+QGraphicsScene * Board::drawFields()
 {
-    for (auto field : fields_)
-        filed.draw();
+    QGraphicsScene * scene = new QGraphicsScene();
+    int x = 100;
+    int lenX = 10*x;
+    int y = 50;
+    int lenY = 10*y;
+    int j = 0;
+    for (int i = 0; i < 10; i++)
+    {
+        scene->addItem(fields_.at(j++)->draw1(lenX, lenY));
+        lenX -= x;
+    }
+    for (int i = 0; i < 10; i++)
+    {
+        scene->addItem(fields_.at(j++)->draw1(lenX, lenY));
+        lenY -= y;
+    }
+    for (int i = 0; i < 10; i++)
+    {
+        scene->addItem(fields_.at(j++)->draw1(lenX, lenY));
+        lenX += x;
+    }
+    for (int i = 0; i < 10; i++)
+    {
+        scene->addItem(fields_.at(j++)->draw1(lenX, lenY));
+        lenY += y;
+    }
+    return scene;
 }
