@@ -47,3 +47,12 @@ public:
     WithSmallRectLeft(std::shared_ptr<RectInterface> recBasic);
     QGraphicsRectItem * draw(int x, int y) override;
 };
+
+class Text : public RectInterface
+{
+    std::shared_ptr<RectInterface> recBasic_;
+    std::string name_;
+public:
+    Text(std::shared_ptr<RectInterface> recBasic, const std::string & name);
+    QGraphicsRectItem * draw(int x, int y) override;
+};

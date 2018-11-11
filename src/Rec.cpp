@@ -1,6 +1,7 @@
 #include "Rect.hpp"
 #include <QBrush>
-
+#include <QGraphicsTextItem>
+#include <QFont>
 
 QGraphicsRectItem * RectBasic::draw(int x, int y)
 {
@@ -71,5 +72,20 @@ QGraphicsRectItem * WithSmallRectLeft::draw(int x, int y)
     brush.setStyle(Qt::SolidPattern);
     brush.setColor(Qt::blue);
     smallRect->setBrush(brush);
+    return rect;
+}
+
+Text::Text(std::shared_ptr<RectInterface> recBasic, const std::string & name) :
+    recBasic_(recBasic),
+    name_(name)
+{}
+
+QGraphicsRectItem * Text::draw(int x, int y)
+{
+    QGraphicsRectItem * rect = recBasic_->draw(x, y);
+    QGraphicsTextItem * text = new QGraphicsTextItem(rect);
+    text->setPlainText(QString::fromStdString(name_));
+    text->setFont(QFont("times",7));
+    text->setPos(x+8, y+20);
     return rect;
 }
