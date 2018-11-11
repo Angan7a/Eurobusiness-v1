@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
 {
 
     std::cout << "Eurobusiness!" << std::endl;
+    system("pwd");
     QApplication a(argc, argv);
     Eurobusiness e(2);
     e.show();

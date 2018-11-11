@@ -35,16 +35,3 @@ QGraphicsRectItem *City::drawRectRight(int x, int y)
     rect_ = std::make_shared<WithSmallRectLeft>(std::make_shared<RectBasic>());
     return rect_->draw(x, y);
 }
-
-QGraphicsRectItem * City::draw(int x, int y, QGraphicsRectItem * basicRec)
-{
-    basicRec = Field::draw(x, y);//new QGraphicsRectItem();
-//    basicRec->setRect(x, y, 100,50);
-    QGraphicsRectItem * rSmall = new QGraphicsRectItem(basicRec);
-    rSmall->setRect(x,y,100,10);
-    QBrush brush;
-    brush.setStyle(Qt::SolidPattern);
-    brush.setColor(Qt::red);
-    rSmall->setBrush(brush);
-    return basicRec;
-}

@@ -66,17 +66,6 @@ PlayerPtr Property::whoWantBuyThisProperty()
     {
         if (player->doYouWantBuyThisProperty()) return player;
     }
-}
-
-QGraphicsRectItem * Property::draw(int x, int y, QGraphicsRectItem * basicRec)
-{
-    basicRec = Field::draw(x, y);//new QGraphicsRectItem();
-  /*  QGraphicsRectItem * rSmall = new QGraphicsRectItem(basicRec);
-    rSmall->setRect(x,y,100,10);
-    std::cout << basicRec->x() <<std::endl;
-    QBrush brush;
-    brush.setStyle(Qt::SolidPattern);
-    brush.setColor(Qt::red);
-    rSmall->setBrush(brush);*/
-    return basicRec;
+    PlayerPtr player = std::make_shared<Player>(Color::RED);
+    return player;
 }

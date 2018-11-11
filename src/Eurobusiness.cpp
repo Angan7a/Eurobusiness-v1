@@ -32,7 +32,6 @@ void Eurobusiness::drawBoard()
     int y = 50;
     int lenY = 10*y;
     std::vector<QGraphicsRectItem *> r1;
-    int j = 0;
     for (int i = 0; i < 10; i++)
     {
         std::cout << lenX << ", " << lenY << std::endl;

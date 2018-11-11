@@ -22,7 +22,7 @@ class InPrison : public StatePlayer
 {
     int roundInPrison = 0;
 public:
-    int action(int price)
+    int action(int)
     { 
         return 0;
     }

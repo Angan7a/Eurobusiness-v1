@@ -14,5 +14,4 @@ public:
     QGraphicsRectItem * drawRectLeft(int x, int y) override;
     QGraphicsRectItem * drawRectTop(int x, int y) override;
     QGraphicsRectItem * drawRectRight(int x, int y) override;
-    QGraphicsRectItem * draw(int x, int y, QGraphicsRectItem * basicRec) override;
 };
