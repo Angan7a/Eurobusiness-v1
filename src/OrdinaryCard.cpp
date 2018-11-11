@@ -7,8 +7,3 @@ OrdinaryCard::OrdinaryCard(const std::string & name) :
 void OrdinaryCard::doOn(PlayerPtr player)
 {
 }
-    
-void OrdinaryCard::draw(int x, int y)
-{
-
-}

@@ -5,6 +5,7 @@
 #include <QGraphicsTextItem>
 #include <QFont>
 #include <QBrush>
+#include "Rect.hpp"
 
 
 class Player;
@@ -13,6 +14,8 @@ using PlayerPtr = std::shared_ptr<Player>;
 class Field
 {
     std::string name_;
+protected:
+    std::shared_ptr<RectInterface> rect_;
 public:
     Field() = delete;
     Field(const Field &) = delete;
@@ -24,8 +27,14 @@ public:
     
     virtual void doOn(PlayerPtr player) = 0;
     std::string getName() const;
+    virtual QGraphicsRectItem * drawRectBottom(int x, int y);
+    virtual QGraphicsRectItem * drawRectLeft(int x, int y);
+    virtual QGraphicsRectItem * drawRectTop(int x, int y);
+    virtual QGraphicsRectItem * drawRectRight(int x, int y);
+
+    std::shared_ptr<RectInterface> getRect() const;
     //virtual QGraphicsRectItem * draw(int x, int y) = 0;
-    virtual void draw(int x, int y) = 0;
+    virtual QGraphicsRectItem * draw(int x, int y, QGraphicsRectItem * baseRec = nullptr);
     QGraphicsRectItem * draw1(int x, int y)
     {
         QGraphicsRectItem * r = new QGraphicsRectItem();

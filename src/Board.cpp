@@ -87,22 +87,22 @@ QGraphicsScene * Board::drawFields()
     int j = 0;
     for (int i = 0; i < 10; i++)
     {
-        scene->addItem(fields_.at(j++)->draw1(lenX, lenY));
+        scene->addItem(fields_.at(j++)->drawRectBottom(lenX, lenY));
         lenX -= x;
     }
     for (int i = 0; i < 10; i++)
     {
-        scene->addItem(fields_.at(j++)->draw1(lenX, lenY));
+        scene->addItem(fields_.at(j++)->drawRectLeft(lenX, lenY));
         lenY -= y;
     }
     for (int i = 0; i < 10; i++)
     {
-        scene->addItem(fields_.at(j++)->draw1(lenX, lenY));
+        scene->addItem(fields_.at(j++)->drawRectTop(lenX, lenY));
         lenX += x;
     }
     for (int i = 0; i < 10; i++)
     {
-        scene->addItem(fields_.at(j++)->draw1(lenX, lenY));
+        scene->addItem(fields_.at(j++)->drawRectRight(lenX, lenY));
         lenY += y;
     }
     return scene;

@@ -68,7 +68,15 @@ PlayerPtr Property::whoWantBuyThisProperty()
     }
 }
 
-void Property::draw(int x, int y)
+QGraphicsRectItem * Property::draw(int x, int y, QGraphicsRectItem * basicRec)
 {
-
+    basicRec = Field::draw(x, y);//new QGraphicsRectItem();
+  /*  QGraphicsRectItem * rSmall = new QGraphicsRectItem(basicRec);
+    rSmall->setRect(x,y,100,10);
+    std::cout << basicRec->x() <<std::endl;
+    QBrush brush;
+    brush.setStyle(Qt::SolidPattern);
+    brush.setColor(Qt::red);
+    rSmall->setBrush(brush);*/
+    return basicRec;
 }

@@ -8,5 +8,4 @@ class YouGoToPrison : public Field
 public:
     YouGoToPrison(const std::string & name, int prisonField = 12);
     void doOn(PlayerPtr player); 
-    void draw(int x, int y);
 };

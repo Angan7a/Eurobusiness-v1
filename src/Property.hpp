@@ -36,7 +36,7 @@ public:
     int getPriceStamp() const;
     void setState(StatePtr state);
     PlayerPtr whoWantBuyThisProperty();
-    void draw(int x, int y) override;
+    virtual QGraphicsRectItem * draw(int x, int y, QGraphicsRectItem * basicRec) override;
 };
 
 using PropertiesPtr = std::vector<std::shared_ptr<Property>>;

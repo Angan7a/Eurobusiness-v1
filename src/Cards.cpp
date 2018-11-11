@@ -29,8 +29,3 @@ void Cards::doOn(std::shared_ptr<Player> player)
 {
 
 }
-
-void Cards::draw(int x, int y) 
-{
-
-}
