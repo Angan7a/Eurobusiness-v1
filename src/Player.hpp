@@ -14,7 +14,7 @@ enum class Color: unsigned char{
     GREEN,
     BLUE,
     YELLOW,
-    PINK
+    BLACK
 };
 
 class Player : public QGraphicsEllipseItem{
@@ -44,4 +44,5 @@ public:
     bool doYouWantBuyThisProperty() const;
     void setState(StatePlayerPtr state);
     void canLeavePrison();
+    Qt::GlobalColor getQtColor();
 };

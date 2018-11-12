@@ -8,7 +8,13 @@ Player::Player(Color c, QGraphicsItem * parent)
         money_(3000),
         location_(0),
         state_(std::make_shared<Free>())
-{}
+{
+    setRect(0, 0, 10, 10);
+    QBrush brush;
+    brush.setStyle(Qt::SolidPattern);
+    brush.setColor(getQtColor());
+    setBrush(brush);
+}
 
 Color Player::getColor() const
 {
@@ -75,5 +81,14 @@ void Player::canLeavePrison()
 {
     if (state_->canPlayerLeavePrison()) 
         state_ = std::make_shared<Free>();
+}
+
+Qt::GlobalColor Player::getQtColor()
+{
+    if (color_ == Color::RED) return Qt::red;
+    if (color_ == Color::BLUE) return Qt::blue;
+    if (color_ == Color::GREEN) return Qt::green;
+    if (color_ == Color::YELLOW) return Qt::yellow;
+    return Qt::black;
 }
 

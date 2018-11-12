@@ -2,7 +2,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <QGraphicsRectItem>
-//#include <QGraphicsTextItem>
+#include <QBrush>
 
 Eurobusiness::Eurobusiness(int numberOfPlayers) : numberOfRounds(0)//, QWidget *parent) : numberOfRounds(0)
 {
@@ -21,7 +21,6 @@ Eurobusiness::Eurobusiness(int numberOfPlayers) : numberOfRounds(0)//, QWidget *
     int a = 15;
     for (auto player : vecPlayersPtr_)
     {
-        player->setRect(0, 0, 10, 10);
         player->setPos(board_->getField(0)->x() + a, board_->getField(0)->y() + 35);
         a += 15;
         scene_->addItem(player.get());

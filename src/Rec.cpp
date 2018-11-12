@@ -70,6 +70,6 @@ QGraphicsRectItem * Text::draw(int x, int y)
     QGraphicsTextItem * text = new QGraphicsTextItem(rect);
     text->setPlainText(QString::fromStdString(name_));
     text->setFont(QFont("times",7));
-    text->setPos(8, 20);
+    text->setPos(8, 15);
     return rect;
 }
