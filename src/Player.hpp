@@ -3,6 +3,7 @@
 #include <string>
 #include "Property.hpp"
 #include "StatePlayer.hpp"
+#include <QGraphicsEllipseItem>
 
 class Property;
 using PropertiesPtr = std::vector<std::shared_ptr<Property>>;
@@ -16,7 +17,7 @@ enum class Color: unsigned char{
     PINK
 };
 
-class Player{
+class Player : public QGraphicsEllipseItem{
     Color color_;
     int money_;
     int location_;
@@ -30,7 +31,7 @@ public:
     Player & operator=(const Player &) = delete;
     Player & operator=(Player &&) = delete;
 
-    Player(Color c);
+    Player(Color c, QGraphicsItem * parent = 0);
 
     Color getColor() const;
     int getMoney() const;

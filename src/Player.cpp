@@ -2,8 +2,9 @@
 #include <algorithm>
 #include <iostream>
 
-Player::Player(Color c)
-        : color_(c),
+Player::Player(Color c, QGraphicsItem * parent)
+        : QGraphicsEllipseItem(parent),
+        color_(c),
         money_(3000),
         location_(0),
         state_(std::make_shared<Free>())

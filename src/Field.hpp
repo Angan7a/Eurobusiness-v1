@@ -16,6 +16,7 @@ class Field
     std::string name_;
 protected:
     std::shared_ptr<RectInterface> rect_;
+    QGraphicsRectItem * qRect_;
 public:
     Field() = delete;
     Field(const Field &) = delete;
@@ -31,4 +32,7 @@ public:
     virtual QGraphicsRectItem * drawRectLeft(int x, int y);
     virtual QGraphicsRectItem * drawRectTop(int x, int y);
     virtual QGraphicsRectItem * drawRectRight(int x, int y);
+    virtual QGraphicsRectItem * setQRect(int x, int y);
+    int x() const;
+    int y() const;
 };

@@ -22,5 +22,4 @@ public:
     VecPlayersPtr getAllPlayers() const;
     void playOneRound();
     void play();
-    void drawBoard();
 };

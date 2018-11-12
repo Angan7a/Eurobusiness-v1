@@ -6,14 +6,16 @@
 QGraphicsRectItem * RectBasic::draw(int x, int y)
 {
     QGraphicsRectItem * r = new QGraphicsRectItem();
-    r->setRect(x, y, 100, 50);
+    r->setRect(0, 0, 100, 50);
+    r->setPos(x, y);
     return r;
 }
 
 QGraphicsRectItem * RectInterface::addRect(int x, int y, int w, int h, QGraphicsRectItem * rect, Qt::GlobalColor color)
 {
     QGraphicsRectItem * smallRect = new QGraphicsRectItem(rect);
-    smallRect->setRect(x, y, w, h);
+    smallRect->setRect(0, 0, w, h);
+    smallRect->setPos(x, y);
     QBrush brush;
     brush.setStyle(Qt::SolidPattern);
     brush.setColor(color);
@@ -27,7 +29,7 @@ WithSmallRectUp::WithSmallRectUp(std::shared_ptr<RectInterface> recBasic) :
 
 QGraphicsRectItem * WithSmallRectUp::draw(int x, int y)
 {
-    return addRect(x, y, 100, 10, recBasic_->draw(x, y), Qt::red);
+    return addRect(0, 0, 100, 10, recBasic_->draw(x, y), Qt::red);
 }
 
 WithSmallRectRight::WithSmallRectRight(std::shared_ptr<RectInterface> recBasic) :
@@ -36,7 +38,7 @@ WithSmallRectRight::WithSmallRectRight(std::shared_ptr<RectInterface> recBasic) 
 
 QGraphicsRectItem * WithSmallRectRight::draw(int x, int y)
 {
-    return addRect(x + 90, y, 10, 50, recBasic_->draw(x, y), Qt::blue);
+    return addRect(90, 0, 10, 50, recBasic_->draw(x, y), Qt::blue);
 }
 
 WithSmallRectDown::WithSmallRectDown(std::shared_ptr<RectInterface> recBasic) :
@@ -45,7 +47,7 @@ WithSmallRectDown::WithSmallRectDown(std::shared_ptr<RectInterface> recBasic) :
 
 QGraphicsRectItem * WithSmallRectDown::draw(int x, int y)
 {
-    return addRect(x, y + 40, 100, 10, recBasic_->draw(x, y), Qt::green);
+    return addRect(0, 40, 100, 10, recBasic_->draw(x, y), Qt::green);
 }
 
 WithSmallRectLeft::WithSmallRectLeft(std::shared_ptr<RectInterface> recBasic) :
@@ -54,7 +56,7 @@ WithSmallRectLeft::WithSmallRectLeft(std::shared_ptr<RectInterface> recBasic) :
 
 QGraphicsRectItem * WithSmallRectLeft::draw(int x, int y)
 {
-    return addRect(x, y, 10, 50, recBasic_->draw(x, y), Qt::yellow);
+    return addRect(0, 0, 10, 50, recBasic_->draw(x, y), Qt::yellow);
 }
 
 Text::Text(std::shared_ptr<RectInterface> recBasic, const std::string & name) :
@@ -68,6 +70,6 @@ QGraphicsRectItem * Text::draw(int x, int y)
     QGraphicsTextItem * text = new QGraphicsTextItem(rect);
     text->setPlainText(QString::fromStdString(name_));
     text->setFont(QFont("times",7));
-    text->setPos(x+8, y+20);
+    text->setPos(8, 20);
     return rect;
 }
