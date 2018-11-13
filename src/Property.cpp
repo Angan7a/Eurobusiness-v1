@@ -21,7 +21,7 @@ int Property::getPurchasePrice() const
 
 void Property::doOn(std::shared_ptr<Player> player)
 {
-    if (owner_ == nullptr)
+    /*if (owner_ == nullptr)
     {
         if (player->doYouWantBuyThisProperty())
         {
@@ -36,7 +36,7 @@ void Property::doOn(std::shared_ptr<Player> player)
     } else if (player != owner_) 
     {
         player->reduceMoney(owner_->addMoney(getPriceStamp()));
-    }
+    }*/
 }
 
 std::shared_ptr<Player> Property::getOwner() const

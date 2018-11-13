@@ -32,7 +32,7 @@ public:
     }
     bool canPlayerLeavePrison()
     {
-        if (roundInPrison > 1) 
+        if (roundInPrison > 2)
             return true;
         return false;
     }

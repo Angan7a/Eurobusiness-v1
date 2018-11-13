@@ -18,7 +18,7 @@ int Roll::throwIt(PlayerPtr player)
         int r4 = dice_->throwIt();
         if (r3 == r4)
         {
-            player->setState(std::shared_ptr<InPrison>());
+            player->setState(std::make_shared<InPrison>());
             player->setLocation(fieldPrison_, xPrison_, yPrison_);
             return 0;
         }

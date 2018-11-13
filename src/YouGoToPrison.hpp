@@ -8,6 +8,6 @@ class YouGoToPrison : public Field
     int xPrison_;
     int yPrison_;
 public:
-    YouGoToPrison(const std::string & name, int prisonField = 10, int xPrison = 12, int yPrison = 50);
+    YouGoToPrison(const std::string & name, int prisonField = 10, int xPrison = 200, int yPrison = 200);
     void doOn(PlayerPtr player);
 };

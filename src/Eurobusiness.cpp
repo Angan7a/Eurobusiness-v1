@@ -47,8 +47,8 @@ void Eurobusiness::playOneRound()
         auto field = board_->getField(location);
         player->setLocation(location, field->x(), field->y());
         player->canLeavePrison();
-        //FieldPtr field = board_->getField(player->getLocation());
-       // field->doOn(player);
+        field = board_->getField(player->getLocation());
+        field->doOn(player);
     }
 }
 

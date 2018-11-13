@@ -4,6 +4,7 @@
 #include "Railway.hpp"
 #include "Parking.hpp"
 #include "OrdinaryCard.hpp"
+#include "YouGoToPrison.hpp"
 #include <string>
 #include <fstream>
 
@@ -29,6 +30,8 @@ FieldPtr Board::factoryFields(const std::string & name)
         return std::make_shared<Railway>(name);
     else if (name.find("Parking") != std::string::npos)
         return std::make_shared<Parking>(name);
+    else if (name.find("Idziesz do") != std::string::npos)
+        return std::make_shared<YouGoToPrison>(name);
     return std::make_shared<OrdinaryCard>(name);
 }
 
