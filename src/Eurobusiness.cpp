@@ -8,11 +8,11 @@
 Eurobusiness::Eurobusiness(int numberOfPlayers) : numberOfRounds(0)//, QWidget *parent) : numberOfRounds(0)
 {
     board_ = std::make_shared<Board>();
-    setFixedSize(1200,600);
+    //setFixedSize(1200,600);
     //setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     //setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     scene_ = board_->drawFields();
-    setScene(scene_);
+    //setScene(scene_);
     roll_ = std::make_shared<Roll>();
     if (numberOfPlayers < 2 || numberOfPlayers > 5) throw std::out_of_range("The number of players should between 2 - 5");
 
@@ -29,6 +29,11 @@ Eurobusiness::Eurobusiness(int numberOfPlayers) : numberOfRounds(0)//, QWidget *
         player->setFlag(QGraphicsItem::ItemIsFocusable);
         player->setFocus();
     }
+}
+
+QGraphicsScene * Eurobusiness::getScene() const
+{
+    return scene_;
 }
 
 VecPlayersPtr Eurobusiness::getAllPlayers() const

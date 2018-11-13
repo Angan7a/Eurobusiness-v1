@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Eurobusiness.hpp"
+#include <QGraphicsScene>
+#include <QGraphicsView>
 
 //int main()
 //{
@@ -15,6 +17,8 @@ int main(int argc, char *argv[])
     std::cout << "Eurobusiness!" << std::endl;
     QApplication a(argc, argv);
     Eurobusiness e(5);
-    e.show();
+    QGraphicsView * view = new QGraphicsView();
+    view->setScene(e.getScene());
+    view->show();
     return a.exec();
 }

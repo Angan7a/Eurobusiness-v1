@@ -6,11 +6,16 @@
 #include <memory>
 #include <QGraphicsView>
 #include <QGraphicsScene>
+#include <QGraphicsRectItem>
+#include <QObject>
+#include <QApplication>
 
 using VecPlayersPtr = std::vector<std::shared_ptr<Player>>;
 
-class Eurobusiness : public QGraphicsView
+class Eurobusiness : public QObject, public QGraphicsRectItem
 {
+//    Q_OBJECT
+
     std::shared_ptr<Board> board_;
     VecPlayersPtr vecPlayersPtr_;
     std::shared_ptr<Roll> roll_;
@@ -23,4 +28,5 @@ public:
     void playOneRound();
     void play();
     void keyPressEvent(QKeyEvent *event); 
+    QGraphicsScene * getScene() const;
 };
