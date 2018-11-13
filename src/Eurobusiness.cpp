@@ -3,6 +3,7 @@
 #include <iostream>
 #include <QGraphicsRectItem>
 #include <QBrush>
+#include <QKeyEvent>
 
 Eurobusiness::Eurobusiness(int numberOfPlayers) : numberOfRounds(0)//, QWidget *parent) : numberOfRounds(0)
 {
@@ -25,6 +26,8 @@ Eurobusiness::Eurobusiness(int numberOfPlayers) : numberOfRounds(0)//, QWidget *
         auto field = board_->getField(0);
         player->setLocation(0, field->x(), field->y());
         scene_->addItem(player.get());
+        player->setFlag(QGraphicsItem::ItemIsFocusable);
+        player->setFocus();
     }
 }
 
@@ -52,4 +55,12 @@ void Eurobusiness::playOneRound()
 void Eurobusiness::play()
 {
     playOneRound();
+}
+
+void Eurobusiness::keyPressEvent(QKeyEvent *event)
+{
+    if (event->key() == Qt::Key_Left)
+    {
+        playOneRound();
+    }
 }
