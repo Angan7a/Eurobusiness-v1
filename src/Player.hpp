@@ -23,6 +23,7 @@ class Player : public QGraphicsEllipseItem{
     int location_;
     PropertiesPtr properties_;
     StatePlayerPtr state_;
+    int getFactor() const;
 public:
     Player()= delete;
     Player(const Player &) = delete;
@@ -39,7 +40,7 @@ public:
     int addMoney(int price);
     int getLocation() const;
     void changeLocation(const int location);
-    void setLocation(const int location);
+    void setLocation(const int location, int xField, int yField);
     void addProperty(const std::shared_ptr<Property> & property);
     bool doYouWantBuyThisProperty() const;
     void setState(StatePlayerPtr state);

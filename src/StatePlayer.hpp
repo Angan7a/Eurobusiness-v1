@@ -13,7 +13,7 @@ public:
 class Free : public StatePlayer
 {
 public:
-    int action(int price) { return price; }
+    int action(int number) { return number; }
     void increaseNumberOfRounds() {}
     bool canPlayerLeavePrison() { return false; }
 };

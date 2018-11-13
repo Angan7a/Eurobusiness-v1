@@ -42,9 +42,10 @@ void Player::changeLocation(const int location)
     }
 }
 
-void Player::setLocation(const int location)
+void Player::setLocation(const int location, int xField, int yField)
 {
     location_ = location;
+    setPos(xField + getFactor(), yField + 35);
 }
 
 void Player::addProperty(const std::shared_ptr<Property> & property)
@@ -92,3 +93,12 @@ Qt::GlobalColor Player::getQtColor()
     return Qt::black;
 }
 
+int Player::getFactor() const
+{
+    int a = 15;
+    if (color_ == Color::RED) return a;
+    if (color_ == Color::BLUE) return 2*a;
+    if (color_ == Color::GREEN) return 3*a;
+    if (color_ == Color::YELLOW) return 4*a;
+    return 5*a;
+}
