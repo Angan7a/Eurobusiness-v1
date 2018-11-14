@@ -49,8 +49,8 @@ json Board::readFile(const std::string & fileName)
 
 void Board::setCards(json dataPacked)
 {
-    redCards_ = std::make_shared<Cards>(CardsColor::RED, "Karta (czerwona)", dataPacked["cards"]["red"]);
-    blueCards_ = std::make_shared<Cards>(CardsColor::BLUE, "Karta (niebieska)", dataPacked["cards"]["blue"]);
+    redCards_ = std::make_shared<Cards>(CardsColor::RED, dataPacked["cards"]["red"]);
+    blueCards_ = std::make_shared<Cards>(CardsColor::BLUE, dataPacked["cards"]["blue"]);
 }
 
 oneCard Board::getRedCard()
@@ -72,9 +72,9 @@ void Board::setFieldToCards(const json & dataPacked)
 FieldPtr Board::ffactoryFields(const std::string & name)
 {
     if (name == "Szansa (czerwona)")
-        return redCards_;
+        return std::make_shared<CardsI>(redCards_, name);
     else if (name == "Szansa (niebieska)")
-        return blueCards_;
+        return std::make_shared<CardsI>(blueCards_, name);
     else if (name == "Sieć wodociągów")
         return std::make_shared<WaterSupplyNetwork>(name, 120);
     return factoryFields(name);
