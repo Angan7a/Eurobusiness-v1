@@ -2,6 +2,7 @@
 #include "json.hpp"
 #include <array>
 #include "Field.hpp"
+#include <QGraphicsRectItem>
 
 using json = nlohmann::json;
 using oneCard = std::string;
@@ -12,7 +13,7 @@ enum class CardsColor
     BLUE
 };
 
-class Cards
+class Cards : public QGraphicsRectItem
 {
     CardsColor color_;
     std::array<oneCard, 16> collectionCards_;
@@ -23,12 +24,12 @@ public:
     Cards & operator=(const Cards &) = delete;
     Cards & operator=(Cards &&) = delete;
     ~Cards() = default;
-    Cards(CardsColor color, json dataPacked);
-    Cards(CardsColor color);
+    Cards(CardsColor color, json dataPacked, int x, int y);
 
     oneCard getOneCard(const int number) const;
     CardsColor getColor() const;
     void doOn(std::shared_ptr<Player> player);
+    Qt::GlobalColor getQtColor();
 };
 
 //=========================
