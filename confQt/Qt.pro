@@ -10,6 +10,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Eurobusiness
 TEMPLATE = app
+QT += core
 
 CONFIG += c++11
 

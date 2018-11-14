@@ -20,24 +20,29 @@ enum class Color: unsigned char{
 };
 
 class Player : public QObject, public QGraphicsEllipseItem{
+    Q_OBJECT
+
     Color color_;
     int money_;
     int location_;
     PropertiesPtr properties_;
     StatePlayerPtr state_;
     int getFactor() const;
+    QTimer * timer;
+    int x_;
+    int y_;
 public:
     Player()= delete;
     Player(const Player &) = delete;
     Player(Player &&) = delete;
-    ~Player() = default;
+    virtual ~Player() = default;
     Player & operator=(const Player &) = delete;
     Player & operator=(Player &&) = delete;
 
     Player(Color c, QGraphicsItem * parent = 0);
 
     Color getColor() const;
-    int getMoney() const;
+    virtual int getMoney() const;
     void reduceMoney(int price);
     int addMoney(int price);
     int getLocation() const;
@@ -49,5 +54,5 @@ public:
     void canLeavePrison();
     Qt::GlobalColor getQtColor();
 public slots:
-    void move(int xField, QTimer * timer);
+    void move();
 };

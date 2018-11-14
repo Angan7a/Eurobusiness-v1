@@ -55,8 +55,8 @@ json Board::readFile(const std::string & fileName)
 
 void Board::setCards(json dataPacked)
 {
-    redCards_ = std::make_shared<Cards>(CardsColor::RED, dataPacked["cards"]["red"], fields_.at(2)->x(), fields_.at(18)->y());
-    blueCards_ = std::make_shared<Cards>(CardsColor::BLUE, dataPacked["cards"]["blue"], fields_.at(8)->x(), fields_.at(18)->y());
+    redCards_ = std::make_shared<Cards>(CardsColor::RED, dataPacked["cards"]["red"], 200 , 200);
+    blueCards_ = std::make_shared<Cards>(CardsColor::BLUE, dataPacked["cards"]["blue"], 800, 200);
 }
 
 void Board::setFieldToCards(const json & dataPacked)
@@ -93,5 +93,7 @@ QGraphicsScene * Board::drawFields()
         scene->addItem(fields_.at(j++)->drawRectRight(lenX, lenY));
         lenY += y;
     }
+    scene->addItem(redCards_.get());
+    scene->addItem(blueCards_.get());
     return scene;
 }

@@ -14,13 +14,20 @@ Player::Player(Color c, QGraphicsItem * parent)
     brush.setStyle(Qt::SolidPattern);
     brush.setColor(getQtColor());
     setBrush(brush);
+        timer = new QTimer();
+        connect(timer,SIGNAL(timeout()),this,SLOT(move()));
 }
 
-void Player::move(int xField, QTimer * timer)
+void Player::move()
 {
-    setPos(x()-5, y());
-    if (x() >= xField)
-        delete timer;
+    if (x() <= x_ && y() <= y_)
+       timer->stop();
+    else if (x() >= x_)
+        setPos(x()-10, y());
+    else
+        setPos(x(), y()-10);
+
+
 }
 
 Color Player::getColor() const
@@ -57,9 +64,10 @@ void Player::setLocation(const int location, int xField, int yField)
     } else
     {
         location_ = location;
-        QTimer * timer = new QTimer();
-        connect(timer,SIGNAL(timeout()),this,SLOT(move(xField, timer)));
+        x_ = xField + getFactor();
+        y_ = yField + 35;
         timer->start(50);
+
     }
 }
 
