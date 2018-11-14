@@ -16,6 +16,13 @@ Player::Player(Color c, QGraphicsItem * parent)
     setBrush(brush);
 }
 
+void Player::move(int xField, QTimer * timer)
+{
+    setPos(x()-5, y());
+    if (x() >= xField)
+        delete timer;
+}
+
 Color Player::getColor() const
 {
     return color_;
@@ -44,8 +51,16 @@ void Player::changeLocation(const int location)
 
 void Player::setLocation(const int location, int xField, int yField)
 {
-    location_ = location;
-    setPos(xField + getFactor(), yField + 35);
+    if (location == 0)
+    {
+        setPos(xField + getFactor(), yField + 35);
+    } else
+    {
+        location_ = location;
+        QTimer * timer = new QTimer();
+        connect(timer,SIGNAL(timeout()),this,SLOT(move(xField, timer)));
+        timer->start(50);
+    }
 }
 
 void Player::addProperty(const std::shared_ptr<Property> & property)

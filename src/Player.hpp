@@ -4,6 +4,8 @@
 #include "Property.hpp"
 #include "StatePlayer.hpp"
 #include <QGraphicsEllipseItem>
+#include <QObject>
+#include <QTimer>
 
 class Property;
 using PropertiesPtr = std::vector<std::shared_ptr<Property>>;
@@ -17,7 +19,7 @@ enum class Color: unsigned char{
     BLACK
 };
 
-class Player : public QGraphicsEllipseItem{
+class Player : public QObject, public QGraphicsEllipseItem{
     Color color_;
     int money_;
     int location_;
@@ -46,4 +48,6 @@ public:
     void setState(StatePlayerPtr state);
     void canLeavePrison();
     Qt::GlobalColor getQtColor();
+public slots:
+    void move(int xField, QTimer * timer);
 };
