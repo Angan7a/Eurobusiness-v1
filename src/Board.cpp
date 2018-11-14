@@ -32,6 +32,12 @@ FieldPtr Board::factoryFields(const std::string & name)
         return std::make_shared<Parking>(name);
     else if (name.find("Idziesz do") != std::string::npos)
         return std::make_shared<YouGoToPrison>(name);
+    else if (name == "Szansa (czerwona)")
+        return std::make_shared<CardsI>(redCards_, name);
+    else if (name == "Szansa (niebieska)")
+        return std::make_shared<CardsI>(blueCards_, name);
+    else if (name == "Sieć wodociągów")
+        return std::make_shared<WaterSupplyNetwork>(name, 120);
     return std::make_shared<OrdinaryCard>(name);
 }
 
@@ -53,31 +59,10 @@ void Board::setCards(json dataPacked)
     blueCards_ = std::make_shared<Cards>(CardsColor::BLUE, dataPacked["cards"]["blue"], fields_.at(8)->x(), fields_.at(18)->y());
 }
 
-oneCard Board::getRedCard()
-{
-    return redCards_->getOneCard(0);
-}
-
-oneCard Board::getBlueCard()
-{
-    return blueCards_->getOneCard(0);
-}
-
 void Board::setFieldToCards(const json & dataPacked)
 {
     for (auto it = dataPacked["fields"].begin(); it != dataPacked["fields"].end(); it++)
-        fields_.at(stoi(it.key())) = ffactoryFields(it.value());
-}
-
-FieldPtr Board::ffactoryFields(const std::string & name)
-{
-    if (name == "Szansa (czerwona)")
-        return std::make_shared<CardsI>(redCards_, name);
-    else if (name == "Szansa (niebieska)")
-        return std::make_shared<CardsI>(blueCards_, name);
-    else if (name == "Sieć wodociągów")
-        return std::make_shared<WaterSupplyNetwork>(name, 120);
-    return factoryFields(name);
+        fields_.at(stoi(it.key())) = factoryFields(it.value());
 }
 
 QGraphicsScene * Board::drawFields()

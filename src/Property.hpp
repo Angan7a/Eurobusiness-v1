@@ -15,7 +15,6 @@ class Property : public Field
 {
     int purchasePrice_;
     std::shared_ptr<Player> owner_;
-    VecPlayersPtr vecPlayersPtr_;
 protected:
     StatePtr state_;
 public:
@@ -26,7 +25,6 @@ public:
     Property & operator=(const Property &) = delete;
     Property & operator=(Property &&) = delete;
 
-    Property(const std::string & name, int price, VecPlayersPtr);
     Property(const std::string & name, int price = 700);
 
     int getPurchasePrice() const;
@@ -35,7 +33,6 @@ public:
     void setOwner(PlayerPtr player);
     int getPriceStamp() const;
     void setState(StatePtr state);
-    PlayerPtr whoWantBuyThisProperty();
 };
 
 using PropertiesPtr = std::vector<std::shared_ptr<Property>>;
