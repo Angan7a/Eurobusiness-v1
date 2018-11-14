@@ -12,7 +12,7 @@ enum class CardsColor
     BLUE
 };
 
-class Cards : public Field
+class Cards
 {
     CardsColor color_;
     std::array<oneCard, 16> collectionCards_;
@@ -23,10 +23,20 @@ public:
     Cards & operator=(const Cards &) = delete;
     Cards & operator=(Cards &&) = delete;
     ~Cards() = default;
-    Cards(CardsColor color, const std::string & strColor, json dataPacked);
-    Cards(CardsColor color, const std::string & name);
+    Cards(CardsColor color, json dataPacked);
+    Cards(CardsColor color);
 
     oneCard getOneCard(const int number) const;
     CardsColor getColor() const;
+    void doOn(std::shared_ptr<Player> player);
+};
+
+//=========================
+class CardsI : public Field
+{
+    std::shared_ptr<Cards> cards_;
+public:
+    CardsI(std::shared_ptr<Cards>, const std::string & name);
+
     void doOn(std::shared_ptr<Player> player) override;
 };

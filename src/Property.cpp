@@ -19,7 +19,7 @@ int Property::getPurchasePrice() const
     return purchasePrice_;
 }
 
-void Property::doOn(std::shared_ptr<Player> player)
+void Property::doOn(std::shared_ptr<Player>)
 {
     /*if (owner_ == nullptr)
     {
