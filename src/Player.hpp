@@ -29,8 +29,11 @@ class Player : public QObject, public QGraphicsEllipseItem{
     StatePlayerPtr state_;
     int getFactor() const;
     QTimer * timer;
-    int x_;
-    int y_;
+    int x_, y_, tempNumberField_, tempX_, tempY_, step_ = 5;
+    void increaseX();
+    void descriseX();
+    void increaseY();
+    void descriseY();
 public:
     Player()= delete;
     Player(const Player &) = delete;

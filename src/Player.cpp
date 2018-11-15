@@ -20,14 +20,32 @@ Player::Player(Color c, QGraphicsItem * parent)
 
 void Player::move()
 {
-    if (x() <= x_ && y() <= y_)
+    if (x_ == x() && y_ == y())
        timer->stop();
-    else if (x() >= x_)
-        setPos(x()-10, y());
-    else
-        setPos(x(), y()-10);
-
-
+    else if (x() > tempX_)
+        descriseX();
+    else if (x() < tempX_)
+        increaseX();
+    else if (y() > tempY_)
+        descriseY();
+    else if (y() < tempY_)
+        increaseY();
+}
+void Player::increaseX()
+{
+    setPos(x()+step_, y());
+}
+void Player::descriseX()
+{
+    setPos(x()-step_, y());
+}
+void Player::increaseY()
+{
+    setPos(x(), y()+step_);
+}
+void Player::descriseY()
+{
+    setPos(x(), y()-step_);
 }
 
 Color Player::getColor() const
@@ -63,11 +81,11 @@ void Player::setLocation(const int location, int xField, int yField)
         setPos(xField + getFactor(), yField + 35);
     } else
     {
+        tempNumberField_ = location_;
         location_ = location;
         x_ = xField + getFactor();
         y_ = yField + 35;
-        timer->start(50);
-
+        timer->start(50);  //call method move()
     }
 }
 
