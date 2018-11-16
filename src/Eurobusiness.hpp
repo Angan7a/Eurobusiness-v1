@@ -13,7 +13,7 @@ class Eurobusiness : public QGraphicsView
 {
     std::shared_ptr<Board> board_;
     VecPlayersPtr vecPlayersPtr_;
-    std::shared_ptr<Roll> roll_;
+    Roll * roll_;
     int numberOfRounds;
     QGraphicsScene * scene_;
 public:

@@ -13,7 +13,9 @@ Eurobusiness::Eurobusiness(int numberOfPlayers) : numberOfRounds(0)//, QWidget *
     //setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     scene_ = board_->drawFields();
     setScene(scene_);
-    roll_ = std::make_shared<Roll>();
+    roll_ = new Roll();
+    roll_->setPos(600, 500);
+    scene_->addItem(roll_);
     if (numberOfPlayers < 2 || numberOfPlayers > 5) throw std::out_of_range("The number of players should between 2 - 5");
 
     for (int i = 0; i < numberOfPlayers; i++)

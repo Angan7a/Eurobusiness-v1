@@ -3,6 +3,7 @@
 #include "Dice.hpp"
 #include "Player.hpp"
 #include <QGraphicsRectItem>
+#include <QGraphicsTextItem>
 
 
 class Roll : public QGraphicsRectItem
@@ -11,6 +12,8 @@ class Roll : public QGraphicsRectItem
     int xPrison_;
     int yPrison_;
     std::shared_ptr<DiceI> dice_;
+    QGraphicsTextItem * text1_;
+    QGraphicsTextItem * text2_;
 public:
     Roll(std::shared_ptr<DiceI> dice = std::make_shared<Dice>(), int fieldPrison_ = 10, int xPrison = 20, int yPrison = 20);
     int throwIt(PlayerPtr player);
