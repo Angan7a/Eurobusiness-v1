@@ -2,9 +2,10 @@
 
 #include "Dice.hpp"
 #include "Player.hpp"
+#include <QGraphicsRectItem>
 
 
-class Roll
+class Roll : public QGraphicsRectItem
 {
     int fieldPrison_;
     int xPrison_;

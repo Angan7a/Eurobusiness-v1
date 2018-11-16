@@ -14,8 +14,8 @@ Player::Player(Color c, QGraphicsItem * parent)
     brush.setStyle(Qt::SolidPattern);
     brush.setColor(getQtColor());
     setBrush(brush);
-        timer = new QTimer();
-        connect(timer,SIGNAL(timeout()),this,SLOT(move()));
+    timer = new QTimer();
+    connect(timer, SIGNAL(timeout()), this, SLOT(move()));
 }
 
 void Player::setXYWherePlayerGo(int x, int y)

@@ -9,13 +9,15 @@
 #include "json.hpp"
 #include <QGraphicsScene>
 #include <QTimer>
+#include <QObject>
 
 using FieldPtr = std::shared_ptr<Field>;
 using PropertyPtr = std::shared_ptr<Property>;   
 using json = nlohmann::json;
 
-class Board
+class Board : public QObject
 {
+    Q_OBJECT
 private:
     std::vector<FieldPtr> fields_;
     std::shared_ptr<Cards> redCards_;   
@@ -39,6 +41,7 @@ public:
     FieldPtr factoryFields(const std::string & name);
     QGraphicsScene * drawFields();
     void movePlayer(PlayerPtr player, int numberFieldToGo);
+public slots:
     void go();
 };
 

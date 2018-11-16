@@ -16,6 +16,7 @@ Board::Board(const std::string & fileName) :
     setCards(j);
     setFieldToCards(j);
     timer_ = new QTimer();
+    connect(timer_, SIGNAL(timeout()), this, SLOT(go()));
 }
 
 void Board::movePlayer(PlayerPtr player, int numberFieldToReach)
