@@ -18,6 +18,12 @@ Player::Player(Color c, QGraphicsItem * parent)
         connect(timer,SIGNAL(timeout()),this,SLOT(move()));
 }
 
+void Player::setXYWherePlayerGo(int x, int y)
+{
+    x_ = x;
+    y_ = y;
+}
+
 void Player::move()
 {
     if (x_ == x() && y_ == y())
@@ -65,7 +71,7 @@ int Player::getLocation() const
 
 void Player::changeLocation(const int location)
 {
-    state_->increaseNumberOfRounds();
+//    state_->increaseNumberOfRounds();
     location_ += state_->action(location);
     if (location_ >= 40)
     {

@@ -8,6 +8,7 @@
 #include <memory>
 #include "json.hpp"
 #include <QGraphicsScene>
+#include <QTimer>
 
 using FieldPtr = std::shared_ptr<Field>;
 using PropertyPtr = std::shared_ptr<Property>;   
@@ -20,6 +21,9 @@ private:
     std::shared_ptr<Cards> redCards_;   
     std::shared_ptr<Cards> blueCards_;   
     std::array<PropertyPtr, 28> properties_;
+    QTimer * timer_;
+    PlayerPtr player_;
+    int numberFieldToReach_;
 public:
     Board(const std::string & fileName = "../files/configData.json");
     ~Board() = default;
@@ -34,5 +38,7 @@ public:
     FieldPtr getField(const unsigned int numberOfField) const noexcept;
     FieldPtr factoryFields(const std::string & name);
     QGraphicsScene * drawFields();
+    void movePlayer(PlayerPtr player, int numberFieldToGo);
+    void go();
 };
 

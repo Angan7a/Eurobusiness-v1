@@ -41,13 +41,10 @@ void Eurobusiness::playOneRound()
     numberOfRounds++;
     for (auto player : vecPlayersPtr_)
     {
-        int roll = roll_->throwIt(player);
-        player->changeLocation(roll);
-        int location = player->getLocation();
-        auto field = board_->getField(location);
-        player->setLocation(location, field->x(), field->y());
+        int numberField = roll_->throwIt(player);
+        board_->movePlayer(player, numberField);
         player->canLeavePrison();
-        field = board_->getField(player->getLocation());
+        auto field = board_->getField(numberField);
         field->doOn(player);
     }
 }

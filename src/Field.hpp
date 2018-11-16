@@ -35,4 +35,7 @@ public:
     virtual QGraphicsRectItem * setQRect(int x, int y);
     int x() const;
     int y() const;
+    int getXPosPlayer() { return x(); }
+    int getYPosPlayer() { return y(); }
+    QGraphicsRectItem * getRect() const;
 };

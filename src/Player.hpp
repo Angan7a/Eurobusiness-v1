@@ -34,6 +34,7 @@ class Player : public QObject, public QGraphicsEllipseItem{
     void descriseX();
     void increaseY();
     void descriseY();
+    Qt::GlobalColor getQtColor();
 public:
     Player()= delete;
     Player(const Player &) = delete;
@@ -55,7 +56,7 @@ public:
     bool doYouWantBuyThisProperty() const;
     void setState(StatePlayerPtr state);
     void canLeavePrison();
-    Qt::GlobalColor getQtColor();
+    void setXYWherePlayerGo(int x, int y);
 public slots:
     void move();
 };

@@ -7,6 +7,7 @@
 #include "YouGoToPrison.hpp"
 #include <string>
 #include <fstream>
+#include <QGraphicsItem>
 
 Board::Board(const std::string & fileName) :
     fields_(40)
@@ -14,6 +15,31 @@ Board::Board(const std::string & fileName) :
     json j = readFile(fileName);
     setCards(j);
     setFieldToCards(j);
+    timer_ = new QTimer();
+}
+
+void Board::movePlayer(PlayerPtr player, int numberFieldToReach)
+{
+    timer_->start(50);
+    player_ = player;
+    player_->move();
+    numberFieldToReach_ = numberFieldToReach;
+}
+
+void Board::go()
+{
+    if (player_->getLocation() == numberFieldToReach_)
+    {
+        timer_->stop();
+    } else
+    {
+        if (player_->collidesWithItem(fields_.at(player_->getLocation() + 1)->getRect(), Qt::IntersectsItemBoundingRect))
+        {
+            player_->changeLocation(1);
+            int location = player_->getLocation();
+            player_->setXYWherePlayerGo(fields_.at(location)->getXPosPlayer(), fields_.at(location)->getYPosPlayer());
+        }
+    }
 }
 
 FieldPtr Board::getField(const unsigned int numberOfField) const noexcept

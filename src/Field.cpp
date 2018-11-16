@@ -11,6 +11,11 @@ std::string Field::getName() const
     return name_;
 }
 
+QGraphicsRectItem * Field::getRect() const
+{
+    return qRect_;
+}
+
 QGraphicsRectItem * Field::setQRect(int x, int y)
 {
     rect_ = std::make_shared<Text>(std::make_shared<RectBasic>(), getName());
