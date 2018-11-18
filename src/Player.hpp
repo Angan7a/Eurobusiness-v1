@@ -53,7 +53,6 @@ public:
     void changeLocation(const int location);
     void setLocation(const int location, int xField, int yField);
     void addProperty(const std::shared_ptr<Property> & property);
-    bool doYouWantBuyThisProperty() const;
     void setState(StatePlayerPtr state);
     void canLeavePrison();
     void setXYWherePlayerGo(int x, int y);

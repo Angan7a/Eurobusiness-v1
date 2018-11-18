@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
-#include "Roll.hpp"
-#include "mock/DiceMock.hpp"
+#include "../src/Roll.hpp"
+#include "../test/mock/DiceMock.hpp"
 #include <memory>
 
 using namespace ::testing;

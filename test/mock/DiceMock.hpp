@@ -1,4 +1,4 @@
-#include "Dice.hpp"
+#include "../src/Dice.hpp"
 #include "gmock/gmock.h"
 
 struct DiceMock : public DiceI

@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "Player.hpp"
+#include "../src/Player.hpp"
 
 
 struct PlayerTests : public::testing::Test

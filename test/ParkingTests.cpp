@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "Parking.hpp"
+#include "../src/Parking.hpp"
 
 struct ParkingTests : public ::testing::Test
 {

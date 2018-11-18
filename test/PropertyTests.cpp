@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
-#include "Property.hpp"
-#include "Player.hpp"
+#include "../src/Property.hpp"
+#include "../src/Player.hpp"
 
 struct PropertyTests : public ::testing::Test
 {

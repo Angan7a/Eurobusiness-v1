@@ -13,11 +13,11 @@ class Eurobusiness : public QGraphicsView
 {
     std::shared_ptr<Board> board_;
     VecPlayersPtr vecPlayersPtr_;
-    Roll * roll_;
+    std::shared_ptr<Roll> roll_;
     int numberOfRounds;
     QGraphicsScene * scene_;
 public:
-    Eurobusiness(int numberOfPlayers);//, QWidget * parent=NULL);
+    Eurobusiness(int numberOfPlayers, std::shared_ptr<DiceI> dice = std::make_shared<Dice>() );//, QWidget * parent=NULL);
 
     VecPlayersPtr getAllPlayers() const;
     void playOneRound();

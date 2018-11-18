@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
-#include "YouGoToPrison.hpp"
-#include "Player.hpp"
+#include "../src/YouGoToPrison.hpp"
+#include "../src/Player.hpp"
 #include <memory>
 
 struct YouGoToPrisonTests : public ::testing::Test

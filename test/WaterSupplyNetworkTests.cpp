@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "WaterSupplyNetwork.hpp"
+#include "../src/WaterSupplyNetwork.hpp"
 
 struct WaterSupplyNetworkTests : public ::testing::Test
 {

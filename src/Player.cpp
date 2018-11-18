@@ -1,6 +1,5 @@
 #include "Player.hpp"
 #include <algorithm>
-#include <iostream>
 
 Player::Player(Color c, QGraphicsItem * parent)
         : QGraphicsEllipseItem(parent),
@@ -110,14 +109,6 @@ int Player::addMoney(int price)
     int priceToReduce = state_->action(price);
     money_ += priceToReduce;
     return priceToReduce;
-}
-
-bool Player::doYouWantBuyThisProperty() const
-{
-    std::cout << "Do you want buy this property?" << std::endl;
-    bool answer;
-    std::cin >> answer;
-    return answer;
 }
 
 void Player::setState(StatePlayerPtr state)

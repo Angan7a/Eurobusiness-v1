@@ -1,11 +1,12 @@
 #include <gtest/gtest.h>
-#include "Cards.hpp"
+#include "../src/Cards.hpp"
+#include "../src/json.hpp"
 #include <stdexcept>
-
+using json = nlohmann::json;
 struct CardsTests : public ::testing::Test
 {
     json dataJson = R"({"2" : "Wracasz do Madrytu."})"_json;
-    Cards redCards{CardsColor::RED, dataJson};
+    Cards redCards{CardsColor::RED, dataJson, 10, 10};
 };
 
 TEST_F(CardsTests, check_if_color_of_redCards_is_red)

@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
-#include "Railway.hpp"
-#include "Field.hpp"
+#include "../src/Railway.hpp"
+#include "../src/Field.hpp"
 
 struct RailwayTests : public ::testing::Test
 {

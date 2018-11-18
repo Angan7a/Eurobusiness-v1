@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "Dice.hpp"
+#include "../src/Dice.hpp"
 
 struct DiceTest : public ::testing::Test
 {

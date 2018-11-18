@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "City.hpp"
+#include "../src/City.hpp"
 
 struct CityTests : public ::testing::Test
 {
