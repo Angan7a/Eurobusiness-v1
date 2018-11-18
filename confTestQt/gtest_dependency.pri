@@ -1,3 +1,5 @@
+GOOGLETEST_DIR="../../googletest/"
+
 isEmpty(GOOGLETEST_DIR):GOOGLETEST_DIR=$$(GOOGLETEST_DIR)
 
 isEmpty(GOOGLETEST_DIR) {

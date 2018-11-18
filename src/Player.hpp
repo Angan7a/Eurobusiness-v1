@@ -29,7 +29,7 @@ class Player : public QObject, public QGraphicsEllipseItem{
     StatePlayerPtr state_;
     int getFactor() const;
     QTimer * timer;
-    int x_, y_, tempNumberField_, tempX_, tempY_, step_ = 5;
+    int x_, y_, tempNumberField_, tempX_, tempY_, step_ = 1;
     void increaseX();
     void descriseX();
     void increaseY();
@@ -58,4 +58,5 @@ public:
     void setXYWherePlayerGo(int x, int y);
 public slots:
     void move();
+    QTimer * getTimer() { return timer; }
 };

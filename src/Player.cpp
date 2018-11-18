@@ -1,5 +1,6 @@
 #include "Player.hpp"
 #include <algorithm>
+#include <iostream>
 
 Player::Player(Color c, QGraphicsItem * parent)
         : QGraphicsEllipseItem(parent),
@@ -17,6 +18,21 @@ Player::Player(Color c, QGraphicsItem * parent)
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
 }
 
+void Player::setLocation(const int location, int xField, int yField)
+{
+    if (location == 0)
+    {
+        setPos(xField + getFactor(), yField + 35);
+    } else
+    {
+        tempNumberField_ = location_;
+        location_ = location;
+        x_ = xField; //+ getFactor();
+        y_ = yField;// + 35;
+        timer->start(1);  //call method move()
+    }
+}
+
 void Player::setXYWherePlayerGo(int x, int y)
 {
     x_ = x;
@@ -27,13 +43,13 @@ void Player::move()
 {
     if (x_ == x() && y_ == y())
        timer->stop();
-    else if (x() > tempX_)
+    else if (x() > x_)
         descriseX();
-    else if (x() < tempX_)
+    else if (x() < x_)
         increaseX();
-    else if (y() > tempY_)
+    else if (y() > y_)
         descriseY();
-    else if (y() < tempY_)
+    else if (y() < y_)
         increaseY();
 }
 void Player::increaseX()
@@ -76,21 +92,6 @@ void Player::changeLocation(const int location)
     {
         money_ += 400;
         location_ %= 40;
-    }
-}
-
-void Player::setLocation(const int location, int xField, int yField)
-{
-    if (location == 0)
-    {
-        setPos(xField + getFactor(), yField + 35);
-    } else
-    {
-        tempNumberField_ = location_;
-        location_ = location;
-        x_ = xField + getFactor();
-        y_ = yField + 35;
-        timer->start(50);  //call method move()
     }
 }
 
