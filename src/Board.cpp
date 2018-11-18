@@ -9,34 +9,46 @@
 #include <fstream>
 #include <QGraphicsItem>
 
-Board::Board(const std::string & fileName) :
+Board::Board(QTimer * timer, const std::string & fileName) :
     fields_(40)
 {
     json j = readFile(fileName);
     setCards(j);
     setFieldToCards(j);
-    timer_ = new QTimer();
+    timer_ = timer;
     connect(timer_, SIGNAL(timeout()), this, SLOT(go()));
 }
 
 void Board::movePlayer(PlayerPtr player, int numberFieldToReach)
 {
+    numberFieldToReach_ = numberFieldToReach;
+    FieldPtr field = fields_.at(player->getLocation()+2);
+    player->setXYWherePlayerGo(field->x(),field->y());
     timer_->start(50);
     player_ = player;
     player_->move();
-    numberFieldToReach_ = numberFieldToReach;
 }
 
 void Board::go()
 {
     if (player_->getLocation() == numberFieldToReach_)
     {
-        timer_->stop();
+//        timer_->stop();
     } else
     {
-        if (player_->collidesWithItem(fields_.at(player_->getLocation() + 1)->getRect(), Qt::IntersectsItemBoundingRect))
+        int locX = getField(player_->getLocation()+1)->x(); 
+        int locY = getField(player_->getLocation()+1)->y(); 
+        if (locX < player_->x() && player_->x() < locX+100 && locY == player_->y())
         {
-            player_->changeLocation(1);
+            //player_->changeLocation(1);
+            player_->setLocation(player_->getLocation()+1, locX, locY);
+            int location = player_->getLocation();
+            player_->setXYWherePlayerGo(fields_.at(location)->getXPosPlayer(), fields_.at(location)->getYPosPlayer());
+        }
+        if (locY < player_->y() && player_->y() < locY+100 && locX == player_->x())
+        {
+            //player_->changeLocation(1);
+            player_->setLocation(player_->getLocation()+1, locX, locY);
             int location = player_->getLocation();
             player_->setXYWherePlayerGo(fields_.at(location)->getXPosPlayer(), fields_.at(location)->getYPosPlayer());
         }

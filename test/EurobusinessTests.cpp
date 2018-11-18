@@ -26,6 +26,7 @@ TEST_F(EurobusinessTests, created_eurobusiness_with_4_players_then_check_if_1_pl
     Eurobusiness euro(4);
     ASSERT_EQ(Color::RED, (euro.getAllPlayers()).at(0)->getColor() );
 }
+
 /*
 TEST_F(EurobusinessTests, create_player_in_prison_made_3_round_and_check_if_player_is_free_and_can_charge_money)
 {
@@ -62,8 +63,7 @@ TEST_F(EurobusinessTests, create_player_in_prison_made_3_round_and_check_if_play
     euro.playOneRound();
     (euro.getAllPlayers()).at(1)->addMoney(5300);
     ASSERT_EQ(3030, (euro.getAllPlayers()).at(1)->getMoney() );
-}*/
-/*
+}
 TEST_F(EurobusinessTests, Mock)
 {
     std::shared_ptr<DiceMock> mock = std::make_shared<DiceMock>();

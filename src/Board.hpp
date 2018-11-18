@@ -27,7 +27,7 @@ private:
     PlayerPtr player_;
     int numberFieldToReach_;
 public:
-    Board(const std::string & fileName = "../files/configData.json");
+    Board(QTimer * timer = new QTimer(), const std::string & fileName = "../files/configData.json");
     ~Board() = default;
     Board(const Board&) = delete;
     Board(Board&&) = delete;

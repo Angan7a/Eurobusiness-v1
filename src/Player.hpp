@@ -50,7 +50,7 @@ public:
     void reduceMoney(int price);
     int addMoney(int price);
     int getLocation() const;
-    void changeLocation(const int location);
+    //void changeLocation(const int location);
     void setLocation(const int location, int xField, int yField);
     void addProperty(const std::shared_ptr<Property> & property);
     void setState(StatePlayerPtr state);

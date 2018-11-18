@@ -22,7 +22,8 @@ void Player::setLocation(const int location, int xField, int yField)
 {
     if (location == 0)
     {
-        setPos(xField + getFactor(), yField + 35);
+        //setPos(xField + getFactor(), yField + 35);
+        setPos(xField, yField);
     } else
     {
         tempNumberField_ = location_;
@@ -84,7 +85,7 @@ int Player::getLocation() const
     return location_;
 }
 
-void Player::changeLocation(const int location)
+/*void Player::changeLocation(const int location)
 {
 //    state_->increaseNumberOfRounds();
     location_ += state_->action(location);
@@ -94,7 +95,7 @@ void Player::changeLocation(const int location)
         location_ %= 40;
     }
 }
-
+*/
 void Player::addProperty(const std::shared_ptr<Property> & property)
 {
     properties_.push_back(property);
