@@ -8,6 +8,7 @@
 #include <string>
 #include <fstream>
 #include <QGraphicsItem>
+#include <iostream>
 
 Board::Board(QTimer * timer, const std::string & fileName) :
     fields_(40)
@@ -22,36 +23,47 @@ Board::Board(QTimer * timer, const std::string & fileName) :
 void Board::movePlayer(PlayerPtr player, int numberFieldToReach)
 {
     numberFieldToReach_ = numberFieldToReach;
-    FieldPtr field = fields_.at(player->getLocation()+2);
-    player->setXYWherePlayerGo(field->x(),field->y());
-    timer_->start(50);
+    FieldPtr field = fields_.at(player->getLocation()+1);
+    XToReach_ = field->x();
+    YToReach_ = field->y();
+   // player->setXYWherePlayerGo(field->x(), field->y());
     player_ = player;
-    player_->move();
+    timer_->start(1);
+    //player_->move();
 }
 
 void Board::go()
 {
-    if (player_->getLocation() == numberFieldToReach_)
+    if (XToReach_== player_->x() && YToReach_ == player_->y())
+       timer_->stop();
+    else 
     {
-//        timer_->stop();
-    } else
-    {
-        int locX = getField(player_->getLocation()+1)->x(); 
-        int locY = getField(player_->getLocation()+1)->y(); 
-        if (locX < player_->x() && player_->x() < locX+100 && locY == player_->y())
+        if (player_->getLocation() != numberFieldToReach_)
         {
-            //player_->changeLocation(1);
-            player_->setLocation(player_->getLocation()+1, locX, locY);
-            int location = player_->getLocation();
-            player_->setXYWherePlayerGo(fields_.at(location)->getXPosPlayer(), fields_.at(location)->getYPosPlayer());
+            int locX = getField(player_->getLocation()+1)->x(); 
+            int locY = getField(player_->getLocation()+1)->y(); 
+            if (locX < player_->x() && player_->x() < locX+100)
+            {
+                std::cout << locX << " In next field " << player_->x() << "  "  << locX+100 << std::endl;
+                player_->moveLocation(1);
+                if (player_->getLocation() != numberFieldToReach_)
+                {
+                    locX = getField(player_->getLocation()+1)->x(); 
+                    locY = getField(player_->getLocation()+1)->y(); 
+                    XToReach_ = locX;
+                    YToReach_ = locY;
+                }
+            }
         }
-        if (locY < player_->y() && player_->y() < locY+100 && locX == player_->x())
-        {
-            //player_->changeLocation(1);
-            player_->setLocation(player_->getLocation()+1, locX, locY);
-            int location = player_->getLocation();
-            player_->setXYWherePlayerGo(fields_.at(location)->getXPosPlayer(), fields_.at(location)->getYPosPlayer());
-        }
+        if (player_->x() > XToReach_)
+            player_->descriseX();
+        else if (player_->x() < XToReach_)
+            player_->increaseX();
+        else if (player_->y() > YToReach_)
+            player_->descriseY();
+        else if (player_->y() < YToReach_)
+            player_->increaseY();
+    //}
     }
 }
 

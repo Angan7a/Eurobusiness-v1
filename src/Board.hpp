@@ -26,6 +26,8 @@ private:
     QTimer * timer_;
     PlayerPtr player_;
     int numberFieldToReach_;
+    int XToReach_;
+    int YToReach_;
 public:
     Board(QTimer * timer = new QTimer(), const std::string & fileName = "../files/configData.json");
     ~Board() = default;

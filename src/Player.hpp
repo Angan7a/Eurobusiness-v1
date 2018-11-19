@@ -30,12 +30,12 @@ class Player : public QObject, public QGraphicsEllipseItem{
     int getFactor() const;
     QTimer * timer;
     int x_, y_, tempNumberField_, tempX_, tempY_, step_ = 1;
+public:
     void increaseX();
     void descriseX();
     void increaseY();
     void descriseY();
     Qt::GlobalColor getQtColor();
-public:
     Player()= delete;
     Player(const Player &) = delete;
     Player(Player &&) = delete;
@@ -50,7 +50,7 @@ public:
     void reduceMoney(int price);
     int addMoney(int price);
     int getLocation() const;
-    //void changeLocation(const int location);
+    void moveLocation(const int location);
     void setLocation(const int location, int xField, int yField);
     void addProperty(const std::shared_ptr<Property> & property);
     void setState(StatePlayerPtr state);

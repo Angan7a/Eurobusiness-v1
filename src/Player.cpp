@@ -85,7 +85,7 @@ int Player::getLocation() const
     return location_;
 }
 
-/*void Player::changeLocation(const int location)
+void Player::moveLocation(const int location)
 {
 //    state_->increaseNumberOfRounds();
     location_ += state_->action(location);
@@ -95,7 +95,7 @@ int Player::getLocation() const
         location_ %= 40;
     }
 }
-*/
+
 void Player::addProperty(const std::shared_ptr<Property> & property)
 {
     properties_.push_back(property);
