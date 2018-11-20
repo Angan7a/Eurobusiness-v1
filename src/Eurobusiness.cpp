@@ -16,7 +16,7 @@ Eurobusiness::Eurobusiness(int numberOfPlayers, std::shared_ptr<DiceI> dice) : n
     roll_ = std::make_shared<Roll>(dice, 10, 20, 20);
     roll_->setPos(600, 500);
     scene_->addItem(roll_.get());
-    if (numberOfPlayers < 2 || numberOfPlayers > 5) throw std::out_of_range("The number of players should between 2 - 5");
+   // if (numberOfPlayers < 2 || numberOfPlayers > 5) throw std::out_of_range("The number of players should between 2 - 5");
 
     for (int i = 0; i < numberOfPlayers; i++)
     {
@@ -41,10 +41,13 @@ VecPlayersPtr Eurobusiness::getAllPlayers() const
 void Eurobusiness::playOneRound()
 {
     numberOfRounds++;
+   static int i = 0;
     for (auto player : vecPlayersPtr_)
     {
-        int numberField = roll_->throwIt(player);
-        board_->movePlayer(player, numberField);
+        int numberField = 1; //roll_->throwIt(player);
+      //  board_->movePlayer1(player, numberField);
+        i++;
+        player->setLocation(3,board_->getField(i)->x(), board_->getField(i)->y());
         player->canLeavePrison();
         auto field = board_->getField(numberField);
         field->doOn(player);

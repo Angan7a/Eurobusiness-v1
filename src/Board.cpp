@@ -102,7 +102,8 @@ void Board::go()
 
 FieldPtr Board::getField(const unsigned int numberOfField) const noexcept
 {
-    return fields_.at(numberOfField);
+    int n = numberOfField%40;
+    return fields_.at(n);
 }
 
 FieldPtr Board::factoryFields(const std::string & name)
