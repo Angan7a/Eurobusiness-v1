@@ -78,6 +78,21 @@ TEST_F(PlayerTests, check_if_player_move_dwon)
         spy.wait(1);
     ASSERT_EQ(100, player1->x());
     ASSERT_EQ(60, player1->y());
+
+
+    player1->setLocation(2, 200, 60);
+    t = 100;
+    while(t--)
+        spy.wait(1);
+    ASSERT_EQ(200, player1->x());
+    ASSERT_EQ(60, player1->y());
+
+    player1->setLocation(3, 300, 60);
+    t = 100;
+    while(t--)
+        spy.wait(1);
+    ASSERT_EQ(300, player1->x());
+    ASSERT_EQ(60, player1->y());
 }
 
 TEST_F(PlayerTests, check_if_player_move_up)

@@ -56,6 +56,8 @@ public:
     void setState(StatePlayerPtr state);
     void canLeavePrison();
     void setXYWherePlayerGo(int x, int y);
+    int getX_() {return x_;}
+    int getY_() {return y_;}
 public slots:
     void move();
     QTimer * getTimer() { return timer; }

@@ -43,7 +43,9 @@ public:
     FieldPtr factoryFields(const std::string & name);
     QGraphicsScene * drawFields();
     void movePlayer(PlayerPtr player, int numberFieldToGo);
+    void movePlayer1(PlayerPtr player, int numberFieldToGo);
 public slots:
     void go();
+    void go1();
 };
 

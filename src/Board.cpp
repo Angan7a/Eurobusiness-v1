@@ -23,13 +23,47 @@ Board::Board(QTimer * timer, const std::string & fileName) :
 void Board::movePlayer(PlayerPtr player, int numberFieldToReach)
 {
     numberFieldToReach_ = numberFieldToReach;
-    FieldPtr field = fields_.at(player->getLocation()+1);
-    XToReach_ = field->x();
-    YToReach_ = field->y();
+    FieldPtr fieldNext = fields_.at(player->getLocation()+1);
+    XToReach_ = fieldNext->x();
+    YToReach_ = fieldNext->y();
    // player->setXYWherePlayerGo(field->x(), field->y());
     player_ = player;
     timer_->start(1);
     //player_->move();
+}
+
+void Board::movePlayer1(PlayerPtr player, int fieldToReach)
+{
+    player_= player;
+    int nextPos = player_->getLocation()+1;
+    player_->setLocation(player->getLocation(), fields_.at(nextPos)->x(), fields_.at(nextPos)->y() );
+    numberFieldToReach_ = fieldToReach;
+    connect(timer_, SIGNAL(timeout()), this, SLOT(go1()));
+    timer_->start(1);
+}
+
+void Board::go1()
+{
+    if (player_->getLocation() == numberFieldToReach_)
+    {
+        timer_->stop();
+    } else if (player_->getLocation()+1 == numberFieldToReach_)
+    {
+        int nextPos = player_->getLocation()+1;
+        FieldPtr nextField = fields_.at(nextPos);
+        if (nextField->x() < player_->x() && player_->x() < nextField->x()+100)
+        {
+            player_->setLocation(nextPos, fields_.at(nextPos)->x(), fields_.at(nextPos)->y() );
+        }
+    } else
+    {
+        int nextPos = player_->getLocation()+1;
+        FieldPtr nextField = fields_.at(nextPos);
+        if (nextField->x() < player_->x() && player_->x() < nextField->x()+100)
+        {
+            player_->setLocation(nextPos, fields_.at(nextPos+1)->x(), fields_.at(nextPos+1)->y() );
+        }
+    }
 }
 
 void Board::go()
@@ -44,7 +78,6 @@ void Board::go()
             int locY = getField(player_->getLocation()+1)->y(); 
             if (locX < player_->x() && player_->x() < locX+100)
             {
-                std::cout << locX << " In next field " << player_->x() << "  "  << locX+100 << std::endl;
                 player_->moveLocation(1);
                 if (player_->getLocation() != numberFieldToReach_)
                 {
