@@ -27,56 +27,42 @@ void Player::setLocation(const int location, int xField, int yField)
 {
     if (location == 0)
     {
-        //setPos(xField + getFactor(), yField + 35);
         setPos(xField, yField);
     } else
     {
-        tempNumberField_ = location_;
         location_ = location;
-        x_ = xField; //+ getFactor();
-        y_ = yField;// + 35;
+        xToReach_ = xField; //+ getFactor();
+        ToReach_ = yField;// + 35;
         timer->start(1);  //call method move()
     }
 }
 
-void Player::setXYWherePlayerGo(int x, int y)
+void Player::moveLocation(const int location)
 {
-    x_ = x;
-    y_ = y;
+    location_ += state_->action(location);
+    if (location_ >= 40)
+    {
+        money_ += 400;
+        location_ %= 40;
+    }
 }
 
 void Player::move()
 {
-    if (x_ == x() && y_ == y())
+    if (xToReach_ == x() && ToReach_ == y())
     {
             timer->stop();
         if (location_ != locationToReach_)
             emit changePosToGo(shared_from_this());
     }
-    else if (x() > x_)
-        descriseX();
-    else if (x() < x_)
-        increaseX();
-    else if (y() > y_)
-        descriseY();
-    else if (y() < y_)
-        increaseY();
-}
-void Player::increaseX()
-{
-    setPos(x()+step_, y());
-}
-void Player::descriseX()
-{
-    setPos(x()-step_, y());
-}
-void Player::increaseY()
-{
-    setPos(x(), y()+step_);
-}
-void Player::descriseY()
-{
-    setPos(x(), y()-step_);
+    else if (x() > xToReach_)
+        setPos(x()-step_, y());
+    else if (x() < xToReach_)
+        setPos(x()+step_, y());
+    else if (y() > ToReach_)
+        setPos(x(), y()-step_);
+    else if (y() < ToReach_)
+        setPos(x(), y()+step_);
 }
 
 Color Player::getColor() const
@@ -92,17 +78,6 @@ int Player::getMoney() const
 int Player::getLocation() const
 {
     return location_;
-}
-
-void Player::moveLocation(const int location)
-{
-//    state_->increaseNumberOfRounds();
-    location_ += state_->action(location);
-    if (location_ >= 40)
-    {
-        money_ += 400;
-        location_ %= 40;
-    }
 }
 
 void Player::addProperty(const std::shared_ptr<Property> & property)

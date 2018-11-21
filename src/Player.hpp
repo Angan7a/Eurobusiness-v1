@@ -30,12 +30,8 @@ class Player : public QObject, public QGraphicsEllipseItem, public std::enable_s
     int getFactor() const;
     QTimer * timer;
     int locationToReach_;
-    int x_, y_, tempNumberField_, tempX_, tempY_, step_ = 1;
+    int xToReach_, ToReach_, step_ = 1;
 public:
-    void increaseX();
-    void descriseX();
-    void increaseY();
-    void descriseY();
     Qt::GlobalColor getQtColor();
     Player()= delete;
     Player(const Player &) = delete;
@@ -56,9 +52,8 @@ public:
     void addProperty(const std::shared_ptr<Property> & property);
     void setState(StatePlayerPtr state);
     void canLeavePrison();
-    void setXYWherePlayerGo(int x, int y);
-    int getX_() {return x_;}
-    int getY_() {return y_;}
+    int getxToReach_() {return xToReach_;}
+    int getToReach_() {return ToReach_;}
     void setLocationToReach(int location);
 public slots:
     void move();

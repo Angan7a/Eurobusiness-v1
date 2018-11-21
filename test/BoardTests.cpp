@@ -37,54 +37,6 @@ TEST_F(BoardTest, check_if_factoryFields_made_parking)
     ASSERT_EQ("Parking", parking->getName());
 }
 
-TEST_F(BoardTest, check_if_player_can_move_1_field)
-{
-    QTimer *timer = new QTimer();
-    Board board(timer);
-    PlayerPtr player = std::make_shared<Player>(Color::RED);
-    board.drawFields();
-    
-    QSignalSpy spy(timer, SIGNAL(timeout()));
-    int t = 100;
-    player->setPos(1000, 1000);
-    board.movePlayer(player, 1);
-    while(t--)
-        spy.wait(1);
-    ASSERT_EQ(900, player->x());
-}
-
-TEST_F(BoardTest, check_if_player_can_move_2_field)
-{
-    QTimer *timer = new QTimer();
-    Board board(timer);
-    PlayerPtr player = std::make_shared<Player>(Color::RED);
-    board.drawFields();
-    
-    QSignalSpy spy(timer, SIGNAL(timeout()));
-    int t = 500;
-    player->setPos(1000, 1000);
-    board.movePlayer(player, 2);
-    while(t--)
-        spy.wait(1);
-    ASSERT_EQ(800, player->x());
-}
-
-TEST_F(BoardTest, check_if_player_can_move_5_field)
-{
-    QTimer *timer = new QTimer();
-    Board board(timer);
-    PlayerPtr player = std::make_shared<Player>(Color::RED);
-    board.drawFields();
-    
-    QSignalSpy spy(timer, SIGNAL(timeout()));
-    int t = 500;
-    player->setPos(1000, 1000);
-    board.movePlayer(player, 5);
-    while(t--)
-        spy.wait(1);
-    ASSERT_EQ(500, player->x());
-}
-
 TEST_F(BoardTest, check_if_player_can_move_1_field_____1)
 {
     QTimer *timer = new QTimer();
