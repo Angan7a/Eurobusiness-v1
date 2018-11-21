@@ -32,7 +32,7 @@ void Player::setLocation(const int location, int xField, int yField)
     {
         location_ = location;
         xToReach_ = xField; //+ getFactor();
-        ToReach_ = yField;// + 35;
+        yToReach_ = yField;// + 35;
         timer->start(1);  //call method move()
     }
 }
@@ -49,7 +49,7 @@ void Player::moveLocation(const int location)
 
 void Player::move()
 {
-    if (xToReach_ == x() && ToReach_ == y())
+    if (xToReach_ == x() && yToReach_ == y())
     {
             timer->stop();
         if (location_ != locationToReach_)
@@ -59,9 +59,9 @@ void Player::move()
         setPos(x()-step_, y());
     else if (x() < xToReach_)
         setPos(x()+step_, y());
-    else if (y() > ToReach_)
+    else if (y() > yToReach_)
         setPos(x(), y()-step_);
-    else if (y() < ToReach_)
+    else if (y() < yToReach_)
         setPos(x(), y()+step_);
 }
 
