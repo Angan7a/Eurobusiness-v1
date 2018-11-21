@@ -18,6 +18,11 @@ Player::Player(Color c, QGraphicsItem * parent)
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
 }
 
+void Player::setLocationToReach(int location)
+{
+    locationToReach_ = location;
+}
+
 void Player::setLocation(const int location, int xField, int yField)
 {
     if (location == 0)
@@ -43,7 +48,11 @@ void Player::setXYWherePlayerGo(int x, int y)
 void Player::move()
 {
     if (x_ == x() && y_ == y())
-       timer->stop();
+    {
+            timer->stop();
+        if (location_ != locationToReach_)
+            emit changePosToGo(shared_from_this());
+    }
     else if (x() > x_)
         descriseX();
     else if (x() < x_)

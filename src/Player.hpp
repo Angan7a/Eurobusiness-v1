@@ -19,7 +19,7 @@ enum class Color: unsigned char{
     BLACK
 };
 
-class Player : public QObject, public QGraphicsEllipseItem{
+class Player : public QObject, public QGraphicsEllipseItem, public std::enable_shared_from_this<Player>{
     Q_OBJECT
 
     Color color_;
@@ -29,6 +29,7 @@ class Player : public QObject, public QGraphicsEllipseItem{
     StatePlayerPtr state_;
     int getFactor() const;
     QTimer * timer;
+    int locationToReach_;
     int x_, y_, tempNumberField_, tempX_, tempY_, step_ = 1;
 public:
     void increaseX();
@@ -58,7 +59,10 @@ public:
     void setXYWherePlayerGo(int x, int y);
     int getX_() {return x_;}
     int getY_() {return y_;}
+    void setLocationToReach(int location);
 public slots:
     void move();
     QTimer * getTimer() { return timer; }
+signals:
+    void changePosToGo(PlayerPtr);
 };

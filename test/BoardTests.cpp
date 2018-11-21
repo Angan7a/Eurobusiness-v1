@@ -94,11 +94,12 @@ TEST_F(BoardTest, check_if_player_can_move_1_field_____1)
     
     QSignalSpy spy(timer, SIGNAL(timeout()));
     int t = 123;
-    player->setPos(1000, 1000);
+    player->setPos(1000, 500);
     board.movePlayer1(player, 1);
     while(t--)
         spy.wait(1);
     ASSERT_EQ(900, player->x());
+    ASSERT_EQ(500, player->y());
 }
 
 TEST_F(BoardTest, check_if_player_can_move_6_times_1_field_____1)
@@ -137,7 +138,7 @@ TEST_F(BoardTest, check_if_player_can_move_6_times_1_field_____1)
     ASSERT_EQ(400, player->x());
 }
 
-TEST_F(BoardTest, check_if_player_can_move_3_field_____1)
+TEST_F(BoardTest, check_if_player_can_move_2_field_____1)
 {
     QTimer *timer = new QTimer();
     Board board(timer);
@@ -146,14 +147,15 @@ TEST_F(BoardTest, check_if_player_can_move_3_field_____1)
     
     QSignalSpy spy(timer, SIGNAL(timeout()));
     int t = 323;
-    player->setPos(1000, 1000);
-    board.movePlayer1(player, 3);
+    player->setPos(1000, 500);
+    board.movePlayer1(player, 2);
     while(t--)
         spy.wait(1);
-    ASSERT_EQ(700, player->x());
+    ASSERT_EQ(500, player->y());
+    ASSERT_EQ(800, player->x());
 }
 
-TEST_F(BoardTest, check_if_player_can_move_3_field_3_times____1)
+TEST_F(BoardTest, check_if_player_can_move_12_field_____1)
 {
     QTimer *timer = new QTimer();
     Board board(timer);
@@ -161,18 +163,49 @@ TEST_F(BoardTest, check_if_player_can_move_3_field_3_times____1)
     board.drawFields();
     
     QSignalSpy spy(timer, SIGNAL(timeout()));
-    int t = 323;
-    player->setPos(1000, 1000);
-    board.movePlayer1(player, 3);
-    t = 303;
+    int t = 1323;
+    player->setPos(1000, 500);
+    board.movePlayer1(player, 12);
     while(t--)
         spy.wait(1);
-    board.movePlayer1(player, 3);
-    t = 223;
-    while(t--)
-        spy.wait(1);
-    ASSERT_EQ(400, player->x());
+    ASSERT_EQ(0, player->x());
+    ASSERT_EQ(400, player->y());
 }
+
+TEST_F(BoardTest, check_if_player_can_move_21_field_____1)
+{
+    QTimer *timer = new QTimer();
+    Board board(timer);
+    PlayerPtr player = std::make_shared<Player>(Color::RED);
+    board.drawFields();
+    
+    QSignalSpy spy(timer, SIGNAL(timeout()));
+    int t = 2323;
+    player->setPos(1000, 500);
+    board.movePlayer1(player, 21);
+    while(t--)
+        spy.wait(1);
+    ASSERT_EQ(100, player->x());
+    ASSERT_EQ(0, player->y());
+}
+
+TEST_F(BoardTest, check_if_player_can_move_41_field_____1)
+{
+    QTimer *timer = new QTimer();
+    Board board(timer);
+    PlayerPtr player = std::make_shared<Player>(Color::RED);
+    board.drawFields();
+    
+    QSignalSpy spy(timer, SIGNAL(timeout()));
+    int t = 4323;
+    player->setPos(1000, 500);
+    board.movePlayer1(player, 41);
+    while(t--)
+        spy.wait(1);
+    ASSERT_EQ(900, player->x());
+    ASSERT_EQ(500, player->y());
+}
+
 /*
 TEST_F(BoardTest, check_if_method_readFile_return_json_file)
 {

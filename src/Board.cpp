@@ -34,17 +34,22 @@ void Board::movePlayer(PlayerPtr player, int numberFieldToReach)
 
 void Board::movePlayer1(PlayerPtr player, int fieldToReach)
 {
-    player_= player;
-    int nextPos = player_->getLocation()+1;
-    player_->setLocation(player->getLocation(), fields_.at(nextPos)->x(), fields_.at(nextPos)->y() );
-    numberFieldToReach_ = fieldToReach;
-    connect(timer_, SIGNAL(timeout()), this, SLOT(go1()));
-    timer_->start(1);
+    player->setLocationToReach(fieldToReach);
+    int nextPos = player->getLocation()+1;
+    player->setLocation(nextPos, getField(nextPos)->x(), getField(nextPos)->y() );
+    connect(player.get(), SIGNAL(changePosToGo(PlayerPtr)), this, SLOT(go1(PlayerPtr)));
+//    connect(timer_, SIGNAL(timeout()), this, SLOT(go1()));
+//    timer_->start(1);
 }
 
-void Board::go1()
+void Board::go1(PlayerPtr player)
 {
-    if (player_->getLocation() == numberFieldToReach_)
+    int nextPos = player->getLocation()+1;
+    player->setLocation(nextPos, getField(nextPos)->x(), getField(nextPos)->y() );
+//    if (player->getLocation() != player->locationToReach_)
+    {
+    }
+    /*if (player_->getLocation() == numberFieldToReach_)
     {
         timer_->stop();
     } else if (player_->getLocation()+1 == numberFieldToReach_)
@@ -63,7 +68,7 @@ void Board::go1()
         {
             player_->setLocation(nextPos, fields_.at(nextPos+1)->x(), fields_.at(nextPos+1)->y() );
         }
-    }
+    }*/
 }
 
 void Board::go()

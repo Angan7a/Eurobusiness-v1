@@ -46,6 +46,6 @@ public:
     void movePlayer1(PlayerPtr player, int numberFieldToGo);
 public slots:
     void go();
-    void go1();
+    void go1(PlayerPtr player);
 };
 
