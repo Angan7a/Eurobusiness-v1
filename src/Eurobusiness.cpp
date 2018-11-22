@@ -17,16 +17,20 @@ Eurobusiness::Eurobusiness(int numberOfPlayers, std::shared_ptr<DiceI> dice) : n
     roll_->setPos(600, 500);
     scene_->addItem(roll_.get());
     if (numberOfPlayers < 2 || numberOfPlayers > 5) throw std::out_of_range("The number of players should between 2 - 5");
+        std::map<int, std::pair<int, int>> mapFields_ = board_->getMapFields();
+        //for (auto i = 0; i < 40; i++)
+          //  std::cout << mapFields_[i]. first << "   ->   " << mapFields_[i].second << std::endl;
+
 
     for (int i = 0; i < numberOfPlayers; i++)
     {
-        vecPlayersPtr_.push_back(std::make_shared<Player>(static_cast<Color>(i)));
+        vecPlayersPtr_.push_back(std::make_shared<Player>(static_cast<Color>(i), mapFields_));
     }
 
     for (auto player : vecPlayersPtr_)
     {
         auto field = board_->getField(0);
-        player->setLocation(0, field->x(), field->y());
+        player->setLocation(0);
         scene_->addItem(player.get());
         player->setFlag(QGraphicsItem::ItemIsFocusable);
         player->setFocus();
@@ -41,13 +45,10 @@ VecPlayersPtr Eurobusiness::getAllPlayers() const
 void Eurobusiness::playOneRound()
 {
     numberOfRounds++;
-   static int i = 0;
     for (auto player : vecPlayersPtr_)
     {
         int numberField = 1; //roll_->throwIt(player);
-      //  board_->movePlayer1(player, numberField);
-        i++;
-        player->setLocation(3,board_->getField(i)->x(), board_->getField(i)->y());
+        player->moveLocation(3);
         player->canLeavePrison();
         auto field = board_->getField(numberField);
         field->doOn(player);

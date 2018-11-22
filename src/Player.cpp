@@ -2,13 +2,14 @@
 #include <algorithm>
 #include <iostream>
 
-Player::Player(Color c, QGraphicsItem * parent)
+Player::Player(Color c, std::map<int, std::pair<int, int>> mapFields, QGraphicsItem * parent)
         : QGraphicsEllipseItem(parent),
         color_(c),
         money_(3000),
         location_(0),
         state_(std::make_shared<Free>())
 {
+    mapFields_ = mapFields;
     setRect(0, 0, 10, 10);
     QBrush brush;
     brush.setStyle(Qt::SolidPattern);
@@ -23,37 +24,43 @@ void Player::setLocationToReach(int location)
     locationToReach_ = location;
 }
 
-void Player::setLocation(const int location, int xField, int yField)
+void Player::setLocation(const int locationToReach)
 {
-    if (location == 0)
-    {
-        setPos(xField, yField);
-    } else
-    {
-        location_ = location;
-        xToReach_ = xField; //+ getFactor();
-        yToReach_ = yField;// + 35;
+        locationToReach_ = locationToReach;
+        //for (auto i = 0; i < 40; i++)
+        //    std::cout << mapFields_[i]. first << "   ->   " << mapFields_[i].second << std::endl;
+        location_++;
+        xToReach_ = mapFields_[location_].first; //+ getFactor();
+        yToReach_ = mapFields_[location_].second;// + 35;
         timer->start(1);  //call method move()
-    }
 }
 
 void Player::moveLocation(const int location)
 {
-    location_ += state_->action(location);
-    if (location_ >= 40)
+    int locationTmp = location_ + state_->action(location);
+    if (locationTmp >= 40)
     {
         money_ += 400;
-        location_ %= 40;
+        locationTmp %= 40;
     }
+    setLocation(locationTmp);
 }
 
 void Player::move()
 {
+    //std::cout << xToReach_ << " xxx  " << x() << std::endl;
+    //std::cout << yToReach_ << " yyy  " << y() << std::endl;
     if (xToReach_ == x() && yToReach_ == y())
     {
+        if (location_ == locationToReach_)
+        {
             timer->stop();
-        if (location_ != locationToReach_)
-            emit changePosToGo(shared_from_this());
+        } else
+        {
+            location_++;
+            xToReach_ = mapFields_[location_].first; //+ getFactor();
+            yToReach_ = mapFields_[location_].second;// + 35;
+        }
     }
     else if (x() > xToReach_)
         setPos(x()-step_, y());

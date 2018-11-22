@@ -41,8 +41,8 @@ TEST_F(BoardTest, check_if_player_can_move_1_field_____1)
 {
     QTimer *timer = new QTimer();
     Board board(timer);
-    PlayerPtr player = std::make_shared<Player>(Color::RED);
     board.drawFields();
+    PlayerPtr player = std::make_shared<Player>(Color::RED, board.getMapFields());
     
     QSignalSpy spy(timer, SIGNAL(timeout()));
     int t = 123;
@@ -58,8 +58,8 @@ TEST_F(BoardTest, check_if_player_can_move_6_times_1_field_____1)
 {
     QTimer *timer = new QTimer();
     Board board(timer);
-    PlayerPtr player = std::make_shared<Player>(Color::RED);
     board.drawFields();
+    PlayerPtr player = std::make_shared<Player>(Color::RED, board.getMapFields());
     
     QSignalSpy spy(timer, SIGNAL(timeout()));
     int t = 123;
@@ -67,23 +67,23 @@ TEST_F(BoardTest, check_if_player_can_move_6_times_1_field_____1)
     board.movePlayer1(player, 1);
     while(t--)
         spy.wait(1);
-    board.movePlayer1(player, 2);
+    board.movePlayer1(player, 1);
     t = 123;
     while(t--)
         spy.wait(1);
-    board.movePlayer1(player, 3);
+    board.movePlayer1(player, 1);
     t = 123;
     while(t--)
         spy.wait(1);
-    board.movePlayer1(player, 4);
+    board.movePlayer1(player, 1);
     t = 123;
     while(t--)
         spy.wait(1);
-    board.movePlayer1(player, 5);
+    board.movePlayer1(player, 1);
     t = 123;
     while(t--)
         spy.wait(1);
-    board.movePlayer1(player, 6);
+    board.movePlayer1(player, 1);
     t = 123;
     while(t--)
         spy.wait(1);
@@ -94,8 +94,8 @@ TEST_F(BoardTest, check_if_player_can_move_2_field_____1)
 {
     QTimer *timer = new QTimer();
     Board board(timer);
-    PlayerPtr player = std::make_shared<Player>(Color::RED);
     board.drawFields();
+    PlayerPtr player = std::make_shared<Player>(Color::RED, board.getMapFields());
     
     QSignalSpy spy(timer, SIGNAL(timeout()));
     int t = 323;
@@ -107,12 +107,38 @@ TEST_F(BoardTest, check_if_player_can_move_2_field_____1)
     ASSERT_EQ(800, player->x());
 }
 
+TEST_F(BoardTest, check_if_player_can_move_3_times_2_fields_____1)
+{
+    QTimer *timer = new QTimer();
+    Board board(timer);
+    board.drawFields();
+    PlayerPtr player = std::make_shared<Player>(Color::RED, board.getMapFields());
+    
+    QSignalSpy spy(timer, SIGNAL(timeout()));
+    int t = 323;
+    player->setPos(1000, 500);
+    board.movePlayer1(player, 2);
+    t = 223;
+    while(t--)
+        spy.wait(1);
+    board.movePlayer1(player, 2);
+    t = 223;
+    while(t--)
+        spy.wait(1);
+    board.movePlayer1(player, 2);
+    t = 223;
+    while(t--)
+        spy.wait(1);
+    ASSERT_EQ(500, player->y());
+    ASSERT_EQ(400, player->x());
+}
+
 TEST_F(BoardTest, check_if_player_can_move_12_field_____1)
 {
     QTimer *timer = new QTimer();
     Board board(timer);
-    PlayerPtr player = std::make_shared<Player>(Color::RED);
     board.drawFields();
+    PlayerPtr player = std::make_shared<Player>(Color::RED, board.getMapFields());
     
     QSignalSpy spy(timer, SIGNAL(timeout()));
     int t = 1323;
@@ -128,8 +154,8 @@ TEST_F(BoardTest, check_if_player_can_move_21_field_____1)
 {
     QTimer *timer = new QTimer();
     Board board(timer);
-    PlayerPtr player = std::make_shared<Player>(Color::RED);
     board.drawFields();
+    PlayerPtr player = std::make_shared<Player>(Color::RED, board.getMapFields());
     
     QSignalSpy spy(timer, SIGNAL(timeout()));
     int t = 2323;
@@ -145,8 +171,8 @@ TEST_F(BoardTest, check_if_player_can_move_41_field_____1)
 {
     QTimer *timer = new QTimer();
     Board board(timer);
-    PlayerPtr player = std::make_shared<Player>(Color::RED);
     board.drawFields();
+    PlayerPtr player = std::make_shared<Player>(Color::RED, board.getMapFields());
     
     QSignalSpy spy(timer, SIGNAL(timeout()));
     int t = 4323;

@@ -34,6 +34,7 @@ TEST_F(PlayerTests, check_if_player_pass_start_his_money_increased)
     ASSERT_EQ(3400,player.getMoney());
 }
 */
+/*
 TEST_F(PlayerTests, check_if_player_go_to_prison_and_invoke_addMoney_then_his_money_dont_increased)
 {
     player.setState(std::make_shared<InPrison>());
@@ -106,4 +107,4 @@ TEST_F(PlayerTests, check_if_player_move_up)
         spy.wait(1);
     ASSERT_EQ(100, player1->x());
     ASSERT_EQ(40, player1->y());
-}
+}*/

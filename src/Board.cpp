@@ -18,18 +18,20 @@ Board::Board(QTimer *, const std::string & fileName) :
     setFieldToCards(j);
 }
 
+std::map<int, std::pair<int, int>> Board::getMapFields() const
+{
+    return mapFields_;
+}
+
 void Board::movePlayer1(PlayerPtr player, int fieldToReach)
 {
-    player->setLocationToReach(fieldToReach);
-    int nextPos = player->getLocation()+1;
-    player->setLocation(nextPos, getField(nextPos)->x(), getField(nextPos)->y() );
-    connect(player.get(), SIGNAL(changePosToGo(PlayerPtr)), this, SLOT(go1(PlayerPtr)));
+    player->moveLocation(fieldToReach);
 }
 
 void Board::go1(PlayerPtr player)
 {
     int nextPos = player->getLocation()+1;
-    player->setLocation(nextPos, getField(nextPos)->x(), getField(nextPos)->y() );
+    //player->setLocation(nextPos, getField(nextPos)->x(), getField(nextPos)->y() );
 }
 
 FieldPtr Board::getField(const unsigned int numberOfField) const noexcept
@@ -92,22 +94,30 @@ QGraphicsScene * Board::drawFields()
     int j = 0;
     for (int i = 0; i < 10; i++)
     {
-        scene->addItem(fields_.at(j++)->drawRectBottom(lenX, lenY));
+        scene->addItem(fields_.at(j)->drawRectBottom(lenX, lenY));
+        std::pair<int, int> xy = std::make_pair(lenX, lenY);
+        mapFields_[j++] = xy;
         lenX -= x;
     }
     for (int i = 0; i < 10; i++)
     {
-        scene->addItem(fields_.at(j++)->drawRectLeft(lenX, lenY));
+        scene->addItem(fields_.at(j)->drawRectLeft(lenX, lenY));
+        std::pair<int, int> xy = std::make_pair(lenX, lenY);
+        mapFields_[j++] = xy;
         lenY -= y;
     }
     for (int i = 0; i < 10; i++)
     {
-        scene->addItem(fields_.at(j++)->drawRectTop(lenX, lenY));
+        scene->addItem(fields_.at(j)->drawRectTop(lenX, lenY));
+        std::pair<int, int> xy = std::make_pair(lenX, lenY);
+        mapFields_[j++] = xy;
         lenX += x;
     }
     for (int i = 0; i < 10; i++)
     {
-        scene->addItem(fields_.at(j++)->drawRectRight(lenX, lenY));
+        scene->addItem(fields_.at(j)->drawRectRight(lenX, lenY));
+        std::pair<int, int> xy = std::make_pair(lenX, lenY);
+        mapFields_[j++] = xy;
         lenY += y;
     }
     scene->addItem(redCards_.get());

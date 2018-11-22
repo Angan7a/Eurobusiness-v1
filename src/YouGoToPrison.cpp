@@ -12,5 +12,5 @@ void YouGoToPrison::doOn(PlayerPtr player)
 {
     player->setState(std::make_shared<InPrison>());
     std::cout << "as" << std::endl;
-    player->setLocation(prisonField_, xPrison_, yPrison_);
+//    player->setLocation(prisonField_, xPrison_, yPrison_);
 }

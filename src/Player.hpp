@@ -31,6 +31,7 @@ class Player : public QObject, public QGraphicsEllipseItem, public std::enable_s
     QTimer * timer;
     int locationToReach_;
     int xToReach_, yToReach_, step_ = 1;
+    std::map<int, std::pair<int, int>> mapFields_;
 public:
     Qt::GlobalColor getQtColor();
     Player()= delete;
@@ -40,7 +41,7 @@ public:
     Player & operator=(const Player &) = delete;
     Player & operator=(Player &&) = delete;
 
-    Player(Color c, QGraphicsItem * parent = 0);
+    Player(Color c, std::map<int, std::pair<int, int>> mapFields = {std::make_pair(2, std::make_pair(2, 2))}, QGraphicsItem * parent = 0);
 
     Color getColor() const;
     virtual int getMoney() const;
@@ -48,7 +49,7 @@ public:
     int addMoney(int price);
     int getLocation() const;
     void moveLocation(const int location);
-    void setLocation(const int location, int xField, int yField);
+    void setLocation(const int locationToReach);
     void addProperty(const std::shared_ptr<Property> & property);
     void setState(StatePlayerPtr state);
     void canLeavePrison();

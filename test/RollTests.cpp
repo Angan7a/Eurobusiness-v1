@@ -31,7 +31,7 @@ TEST_F(RollTests, check_if_throwIt_with_doublet_make_second_throwIt_and_return_s
         .WillOnce(Return(5));
     ASSERT_EQ(12, roll.throwIt(player));
 }
-
+/*
 TEST_F(RollTests, check_if_throwIt_with_twice_doublet_send_palyer_to_prison)
 {
     EXPECT_CALL(* diceMock, throwIt())
@@ -42,4 +42,4 @@ TEST_F(RollTests, check_if_throwIt_with_twice_doublet_send_palyer_to_prison)
         .WillOnce(Return(3));
     roll.throwIt(player);
     ASSERT_EQ(10, player->getLocation());
-}
+}*/

@@ -10,6 +10,7 @@
 #include <QGraphicsScene>
 #include <QTimer>
 #include <QObject>
+#include <map>
 
 using FieldPtr = std::shared_ptr<Field>;
 using PropertyPtr = std::shared_ptr<Property>;   
@@ -23,6 +24,7 @@ private:
     std::shared_ptr<Cards> redCards_;   
     std::shared_ptr<Cards> blueCards_;   
     std::array<PropertyPtr, 28> properties_;
+    std::map<int, std::pair<int, int>> mapFields_;
 public:
     Board(QTimer * timer = new QTimer(), const std::string & fileName = "../files/configData.json");
     ~Board() = default;
@@ -38,6 +40,7 @@ public:
     FieldPtr factoryFields(const std::string & name);
     QGraphicsScene * drawFields();
     void movePlayer1(PlayerPtr player, int numberFieldToGo);
+    std::map<int, std::pair<int, int>> getMapFields() const;
 public slots:
     void go1(PlayerPtr player);
 };

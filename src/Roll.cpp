@@ -30,8 +30,8 @@ int Roll::throwIt(PlayerPtr player)
         text2_->setPlainText(QString::number(r4));
         if (r3 == r4)
         {
+            player->setLocation(fieldPrison_);
             player->setState(std::make_shared<InPrison>());
-            player->setLocation(fieldPrison_, xPrison_, yPrison_);
             return 0;
         }
         return r1 + r2 + r3 + r4;
