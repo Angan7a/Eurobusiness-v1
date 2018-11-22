@@ -30,10 +30,11 @@ Eurobusiness::Eurobusiness(int numberOfPlayers, std::shared_ptr<DiceI> dice) : n
     for (auto player : vecPlayersPtr_)
     {
         auto field = board_->getField(0);
-        player->setPos(1000,500);
+        //player->setPos(roll_->throwIt(player),roll_->throwIt(player));
+        //player->setLocation(0);
         scene_->addItem(player.get());
-        player->setFlag(QGraphicsItem::ItemIsFocusable);
-        player->setFocus();
+        //player->setFlag(QGraphicsItem::ItemIsFocusable);
+        //player->setFocus();
     }
 }
 
@@ -47,8 +48,8 @@ void Eurobusiness::playOneRound()
     numberOfRounds++;
     for (auto player : vecPlayersPtr_)
     {
-        int numberField = 1; //roll_->throwIt(player);
-        player->moveLocation(3);
+        int numberField = roll_->throwIt(player);
+        player->moveLocation(numberField);
         player->canLeavePrison();
         auto field = board_->getField(numberField);
         field->doOn(player);

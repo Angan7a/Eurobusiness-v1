@@ -15,6 +15,7 @@ Player::Player(Color c, std::map<int, std::pair<int, int>> mapFields, QGraphicsI
     brush.setStyle(Qt::SolidPattern);
     brush.setColor(getQtColor());
     setBrush(brush);
+    setPos(mapFields_[0].first + getFactor(), mapFields_[0].second + 35);
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
 }
@@ -32,8 +33,8 @@ void Player::setLocation(const int locationToReach)
         location_++;
         if (location_ >= 40)
             location_ %= 40;
-        xToReach_ = mapFields_[location_].first; //+ getFactor();
-        yToReach_ = mapFields_[location_].second;// + 35;
+        xToReach_ = mapFields_[location_].first + getFactor();
+        yToReach_ = mapFields_[location_].second + 35;
         std::cout << mapFields_[39].first << "    " << mapFields_[39].second <<std::endl;
         timer->start(1);  //call method move()
 }
@@ -64,8 +65,8 @@ void Player::move()
             location_++;
         if (location_ >= 40)
             location_ %= 40;
-            xToReach_ = mapFields_[location_].first; //+ getFactor();
-            yToReach_ = mapFields_[location_].second;// + 35;
+            xToReach_ = mapFields_[location_].first + getFactor();
+            yToReach_ = mapFields_[location_].second + 35;
         }
     }
     else if (x() > xToReach_)

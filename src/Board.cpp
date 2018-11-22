@@ -109,7 +109,7 @@ QGraphicsScene * Board::drawFields()
     for (int i = 0; i < 10; i++)
     {
         scene->addItem(fields_.at(j)->drawRectTop(lenX, lenY));
-        std::pair<int, int> xy = std::make_pair(lenX, lenY);
+        std::pair<int, int> xy = std::make_pair(lenX, lenY - 30);
         mapFields_[j++] = xy;
         lenX += x;
     }
