@@ -30,7 +30,7 @@ Eurobusiness::Eurobusiness(int numberOfPlayers, std::shared_ptr<DiceI> dice) : n
     for (auto player : vecPlayersPtr_)
     {
         auto field = board_->getField(0);
-        player->setLocation(0);
+        player->setPos(1000,500);
         scene_->addItem(player.get());
         player->setFlag(QGraphicsItem::ItemIsFocusable);
         player->setFocus();

@@ -30,8 +30,11 @@ void Player::setLocation(const int locationToReach)
         //for (auto i = 0; i < 40; i++)
         //    std::cout << mapFields_[i]. first << "   ->   " << mapFields_[i].second << std::endl;
         location_++;
+        if (location_ >= 40)
+            location_ %= 40;
         xToReach_ = mapFields_[location_].first; //+ getFactor();
         yToReach_ = mapFields_[location_].second;// + 35;
+        std::cout << mapFields_[39].first << "    " << mapFields_[39].second <<std::endl;
         timer->start(1);  //call method move()
 }
 
@@ -43,6 +46,7 @@ void Player::moveLocation(const int location)
         money_ += 400;
         locationTmp %= 40;
     }
+
     setLocation(locationTmp);
 }
 
@@ -58,6 +62,8 @@ void Player::move()
         } else
         {
             location_++;
+        if (location_ >= 40)
+            location_ %= 40;
             xToReach_ = mapFields_[location_].first; //+ getFactor();
             yToReach_ = mapFields_[location_].second;// + 35;
         }
