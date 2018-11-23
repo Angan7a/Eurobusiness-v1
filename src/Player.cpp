@@ -35,7 +35,7 @@ void Player::setLocation(const int locationToReach)
             location_ %= 40;
         xToReach_ = mapFields_[location_].first + getFactor();
         yToReach_ = mapFields_[location_].second + 35;
-        std::cout << mapFields_[39].first << "    " << mapFields_[39].second <<std::endl;
+      //  std::cout << mapFields_[39].first << "    " << mapFields_[39].second <<std::endl;
         timer->start(1);  //call method move()
 }
 
