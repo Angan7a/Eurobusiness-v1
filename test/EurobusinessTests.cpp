@@ -64,6 +64,7 @@ TEST_F(EurobusinessTests, create_player_in_prison_made_3_round_and_check_if_play
     (euro.getAllPlayers()).at(1)->addMoney(5300);
     ASSERT_EQ(3030, (euro.getAllPlayers()).at(1)->getMoney() );
 }
+
 TEST_F(EurobusinessTests, Mock)
 {
     std::shared_ptr<DiceMock> mock = std::make_shared<DiceMock>();

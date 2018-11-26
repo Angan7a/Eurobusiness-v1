@@ -55,7 +55,6 @@ public:
     void canLeavePrison();
     int getXToReach_() {return xToReach_;}
     int getYToReach_() {return yToReach_;}
-    void setLocationToReach(int location);
 public slots:
     void move();
     QTimer * getTimer() { return timer; }

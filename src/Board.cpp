@@ -28,12 +28,6 @@ void Board::movePlayer1(PlayerPtr player, int fieldToReach)
     player->moveLocation(fieldToReach);
 }
 
-void Board::go1(PlayerPtr player)
-{
-    int nextPos = player->getLocation()+1;
-    //player->setLocation(nextPos, getField(nextPos)->x(), getField(nextPos)->y() );
-}
-
 FieldPtr Board::getField(const unsigned int numberOfField) const noexcept
 {
     int n = numberOfField%40;

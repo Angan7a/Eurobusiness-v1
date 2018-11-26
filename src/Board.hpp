@@ -41,7 +41,5 @@ public:
     QGraphicsScene * drawFields();
     void movePlayer1(PlayerPtr player, int numberFieldToGo);
     std::map<int, std::pair<int, int>> getMapFields() const;
-public slots:
-    void go1(PlayerPtr player);
 };
 
